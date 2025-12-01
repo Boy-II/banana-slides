@@ -60,7 +60,7 @@ class FileService:
         return str(filepath.relative_to(self.upload_folder))
     
     def save_generated_image(self, image: Image.Image, project_id: str, 
-                           page_id: str, format: str = 'PNG') -> str:
+                           page_id: str, image_format: str = 'PNG') -> str:
         """
         Save generated image
         
@@ -68,17 +68,21 @@ class FileService:
             image: PIL Image object
             project_id: Project ID
             page_id: Page ID
-            format: Image format
+            image_format: Image format (PNG, JPEG, etc.)
         
         Returns:
             Relative file path from upload folder
         """
         pages_dir = self._get_pages_dir(project_id)
         
-        filename = f"{page_id}.{format.lower()}"
+        # Use lowercase extension
+        ext = image_format.lower()
+        filename = f"{page_id}.{ext}"
         filepath = pages_dir / filename
         
-        image.save(str(filepath), format=format)
+        # Save image - format is determined by file extension or explicitly specified
+        # Some PIL Image objects may not support format parameter, so we use extension
+        image.save(str(filepath))
         
         # Return relative path
         return str(filepath.relative_to(self.upload_folder))
