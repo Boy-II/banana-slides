@@ -6,3 +6,4 @@
 *.ppt
 *.pptx
 generate-example.py
+*.mdc
