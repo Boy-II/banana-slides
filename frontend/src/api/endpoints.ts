@@ -279,3 +279,51 @@ export const exportPDF = async (projectId: string): Promise<Blob> => {
   return response.data;
 };
 
+// ===== 用户模板 =====
+
+export interface UserTemplate {
+  template_id: string;
+  name?: string;
+  template_image_url: string;
+  created_at?: string;
+  updated_at?: string;
+}
+
+/**
+ * 上传用户模板
+ */
+export const uploadUserTemplate = async (
+  templateImage: File,
+  name?: string
+): Promise<ApiResponse<UserTemplate>> => {
+  const formData = new FormData();
+  formData.append('template_image', templateImage);
+  if (name) {
+    formData.append('name', name);
+  }
+  
+  const response = await apiClient.post<ApiResponse<UserTemplate>>(
+    '/api/user-templates',
+    formData
+  );
+  return response.data;
+};
+
+/**
+ * 获取用户模板列表
+ */
+export const listUserTemplates = async (): Promise<ApiResponse<{ templates: UserTemplate[] }>> => {
+  const response = await apiClient.get<ApiResponse<{ templates: UserTemplate[] }>>(
+    '/api/user-templates'
+  );
+  return response.data;
+};
+
+/**
+ * 删除用户模板
+ */
+export const deleteUserTemplate = async (templateId: string): Promise<ApiResponse> => {
+  const response = await apiClient.delete<ApiResponse>(`/api/user-templates/${templateId}`);
+  return response.data;
+};
+

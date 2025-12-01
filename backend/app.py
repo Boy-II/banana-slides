@@ -11,7 +11,7 @@ load_dotenv()
 from flask import Flask
 from flask_cors import CORS
 from models import db
-from controllers import project_bp, page_bp, template_bp, export_bp, file_bp
+from controllers import project_bp, page_bp, template_bp, user_template_bp, export_bp, file_bp
 
 
 def create_app():
@@ -59,6 +59,7 @@ def create_app():
     app.register_blueprint(project_bp)
     app.register_blueprint(page_bp)
     app.register_blueprint(template_bp)
+    app.register_blueprint(user_template_bp)
     app.register_blueprint(export_bp)
     app.register_blueprint(file_bp)
     

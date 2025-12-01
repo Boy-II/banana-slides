@@ -193,4 +193,55 @@ class FileService:
                 return str(file)
         
         return None
+    
+    def _get_user_templates_dir(self) -> Path:
+        """Get user templates directory"""
+        templates_dir = self.upload_folder / "user-templates"
+        templates_dir.mkdir(exist_ok=True, parents=True)
+        return templates_dir
+    
+    def save_user_template(self, file, template_id: str) -> str:
+        """
+        Save user template image file
+        
+        Args:
+            file: FileStorage object from Flask request
+            template_id: Template ID
+        
+        Returns:
+            Relative file path from upload folder
+        """
+        templates_dir = self._get_user_templates_dir()
+        template_dir = templates_dir / template_id
+        template_dir.mkdir(exist_ok=True, parents=True)
+        
+        # Secure filename and preserve extension
+        original_filename = secure_filename(file.filename)
+        ext = original_filename.rsplit('.', 1)[1].lower() if '.' in original_filename else 'png'
+        filename = f"template.{ext}"
+        
+        filepath = template_dir / filename
+        file.save(str(filepath))
+        
+        # Return relative path
+        return str(filepath.relative_to(self.upload_folder))
+    
+    def delete_user_template(self, template_id: str) -> bool:
+        """
+        Delete user template
+        
+        Args:
+            template_id: Template ID
+        
+        Returns:
+            True if deleted successfully
+        """
+        import shutil
+        templates_dir = self._get_user_templates_dir()
+        template_dir = templates_dir / template_id
+        
+        if template_dir.exists():
+            shutil.rmtree(template_dir)
+        
+        return True
 

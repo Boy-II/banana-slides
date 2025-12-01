@@ -44,3 +44,36 @@ def serve_file(project_id, file_type, filename):
     except Exception as e:
         return error_response('SERVER_ERROR', str(e), 500)
 
+
+@file_bp.route('/user-templates/<template_id>/<filename>', methods=['GET'])
+def serve_user_template(template_id, filename):
+    """
+    GET /files/user-templates/{template_id}/{filename} - Serve user template files
+    
+    Args:
+        template_id: Template UUID
+        filename: File name
+    """
+    try:
+        # Construct file path
+        file_dir = os.path.join(
+            current_app.config['UPLOAD_FOLDER'],
+            'user-templates',
+            template_id
+        )
+        
+        # Check if directory exists
+        if not os.path.exists(file_dir):
+            return not_found('File')
+        
+        # Check if file exists
+        file_path = os.path.join(file_dir, filename)
+        if not os.path.exists(file_path):
+            return not_found('File')
+        
+        # Serve file
+        return send_from_directory(file_dir, filename)
+    
+    except Exception as e:
+        return error_response('SERVER_ERROR', str(e), 500)
+
