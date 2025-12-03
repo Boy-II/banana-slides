@@ -75,7 +75,7 @@ def create_app():
     app.config['LOG_LEVEL'] = os.getenv('LOG_LEVEL', 'INFO').upper()
     
     # CORS configuration
-    raw_cors = os.getenv('CORS_ORIGINS', 'http://localhost:5173')
+    raw_cors = os.getenv('CORS_ORIGINS', 'http://localhost:3000')
     if raw_cors.strip() == '*':
         cors_origins = '*'
     else:
