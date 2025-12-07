@@ -1079,7 +1079,7 @@ export const SlidePreview: React.FC = () => {
                   </div>
                   {selectedPage.outline_content.points && selectedPage.outline_content.points.length > 0 && (
                     <div className="text-sm text-gray-600">
-                      <Markdown>{selectedPage.outline_content.points.map(point => `- ${point}`).join('\n')}</Markdown>
+                      <Markdown>{selectedPage.outline_content.points.join('\n')}</Markdown>
                     </div>
                   )}
                 </div>
