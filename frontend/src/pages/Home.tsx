@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Sparkles, FileText, FileEdit, ImagePlus, Paperclip, Palette, Lightbulb } from 'lucide-react';
+import { Sparkles, FileText, FileEdit, ImagePlus, Paperclip, Palette, Lightbulb, Search } from 'lucide-react';
 import { Button, Textarea, Card, useToast, MaterialGeneratorModal, ReferenceFileList, ReferenceFileSelector, FilePreviewModal } from '@/components/shared';
 import { TemplateSelector, getTemplateFile } from '@/components/shared/TemplateSelector';
 import { listUserTemplates, type UserTemplate, uploadReferenceFile, type ReferenceFile, associateFileToProject, triggerFileParse } from '@/api/endpoints';
@@ -327,25 +327,27 @@ export const Home: React.FC = () => {
       </div>
 
       {/* 导航栏 */}
-      <nav className="relative h-14 md:h-16 bg-white/80 backdrop-blur-md shadow-sm border-b border-gray-100/50">
-        <div className="max-w-7xl mx-auto px-3 md:px-4 h-full flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <img
-              src="/logo.jpg"
-              alt="蕉幻 Banana Slides Logo"
-              className="w-8 h-8 md:w-12 md:h-12 rounded-lg object-cover object-center"
-            />
-            <span className="text-lg md:text-xl font-bold text-gray-900">
+      <nav className="relative h-16 md:h-18 bg-gradient-to-r from-white via-yellow-50/50 to-orange-50/40 backdrop-blur-xl shadow-md border-b-2 border-banana-200/30">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 h-full flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="flex items-center">
+              <img
+                src="/logo.png"
+                alt="蕉幻 Banana Slides Logo"
+                className="h-10 md:h-12 w-auto rounded-lg object-contain"
+              />
+            </div>
+            <span className="text-xl md:text-2xl font-bold bg-gradient-to-r from-banana-600 via-orange-500 to-pink-500 bg-clip-text text-transparent">
               蕉幻
             </span>
           </div>
-          <div className="flex items-center gap-1 md:gap-4">
+          <div className="flex items-center gap-2 md:gap-3">
             <Button
               variant="ghost"
               size="sm"
               icon={<ImagePlus size={16} className="md:w-[18px] md:h-[18px]" />}
               onClick={handleOpenMaterialModal}
-              className="hidden sm:inline-flex hover:bg-banana-50/50"
+              className="hidden sm:inline-flex hover:bg-banana-100/60 hover:shadow-sm hover:scale-105 transition-all duration-200 font-medium"
             >
               <span className="hidden md:inline">素材生成</span>
             </Button>
@@ -353,12 +355,18 @@ export const Home: React.FC = () => {
               variant="ghost" 
               size="sm" 
               onClick={() => navigate('/history')}
-              className="text-xs md:text-sm hover:bg-banana-50/50"
+              className="text-xs md:text-sm hover:bg-banana-100/60 hover:shadow-sm hover:scale-105 transition-all duration-200 font-medium"
             >
               <span className="hidden sm:inline">历史项目</span>
               <span className="sm:hidden">历史</span>
             </Button>
-            <Button variant="ghost" size="sm" className="hidden md:inline-flex hover:bg-banana-50/50">帮助</Button>
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              className="hidden md:inline-flex hover:bg-banana-100/60 hover:shadow-sm hover:scale-105 transition-all duration-200 font-medium"
+            >
+              帮助
+            </Button>
           </div>
         </div>
       </nav>
@@ -389,8 +397,9 @@ export const Home: React.FC = () => {
           <div className="flex flex-wrap items-center justify-center gap-2 md:gap-3 pt-4">
             {[
               { icon: <Sparkles size={14} className="text-yellow-600" />, label: '一句话生成 PPT' },
-              { icon: <FileText size={14} className="text-orange-500" />, label: '三种生成路径' },
               { icon: <FileEdit size={14} className="text-blue-500" />, label: '自然语言修改' },
+              { icon: <Search size={14} className="text-orange-500" />, label: '指定区域编辑' },
+              
               { icon: <Paperclip size={14} className="text-green-600" />, label: '一键导出 PPTX/PDF' },
             ].map((feature, idx) => (
               <span
