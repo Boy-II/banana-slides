@@ -20,7 +20,7 @@ class TestFullWorkflow:
             'idea_prompt': '生成一份关于量子计算的PPT，共3页'
         })
         
-        data = assert_success_response(create_response)
+        data = assert_success_response(create_response, 201)
         project_id = data['data']['project_id']
         
         # 2. 获取项目详情
@@ -38,7 +38,7 @@ class TestFullWorkflow:
             'idea_prompt': '测试模板上传'
         })
         
-        data = assert_success_response(create_response)
+        data = assert_success_response(create_response, 201)
         project_id = data['data']['project_id']
         
         # 2. 上传模板
@@ -58,7 +58,7 @@ class TestFullWorkflow:
             'creation_type': 'idea',
             'idea_prompt': '生命周期测试'
         })
-        data = assert_success_response(create_response)
+        data = assert_success_response(create_response, 201)
         project_id = data['data']['project_id']
         
         # 2. 读取
@@ -117,7 +117,7 @@ class TestConcurrentRequests:
                 'idea_prompt': f'并发测试项目 {i}'
             })
             
-            data = assert_success_response(response)
+            data = assert_success_response(response, 201)
             project_ids.append(data['data']['project_id'])
         
         # 确保所有项目ID都不同

@@ -149,7 +149,11 @@ def create_project():
         if not data:
             return bad_request("Request body is required")
         
-        creation_type = data.get('creation_type', 'idea')
+        # creation_type is required
+        if 'creation_type' not in data:
+            return bad_request("creation_type is required")
+        
+        creation_type = data.get('creation_type')
         
         if creation_type not in ['idea', 'outline', 'descriptions']:
             return bad_request("Invalid creation_type")

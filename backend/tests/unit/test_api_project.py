@@ -16,7 +16,7 @@ class TestProjectCreate:
             'idea_prompt': '生成一份关于AI的PPT'
         })
         
-        data = assert_success_response(response, 200)
+        data = assert_success_response(response, 201)
         assert 'project_id' in data['data']
         assert data['data']['status'] == 'DRAFT'
     
@@ -30,7 +30,7 @@ class TestProjectCreate:
             ]
         })
         
-        data = assert_success_response(response, 200)
+        data = assert_success_response(response, 201)
         assert 'project_id' in data['data']
     
     def test_create_project_missing_type(self, client):
