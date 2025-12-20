@@ -43,7 +43,7 @@ if ! command -v docker &> /dev/null; then
     exit 1
 fi
 
-if ! command -v docker-compose &> /dev/null && ! docker compose version &> /dev/null; then
+if ! command -v docker compose &> /dev/null && ! docker compose version &> /dev/null; then
     log_error "Docker Compose未安装"
     exit 1
 fi
@@ -57,13 +57,13 @@ log_success "前置条件检查通过"
 
 # 1. 清理旧环境
 log_info "步骤1/10: 清理旧环境..."
-docker-compose down -v 2>/dev/null || true
+docker compose down -v 2>/dev/null || true
 docker system prune -f >/dev/null 2>&1 || true
 log_success "环境清理完成"
 
 # 2. 构建镜像
 log_info "步骤2/10: 构建Docker镜像..."
-if docker-compose build --no-cache; then
+if docker compose build --no-cache; then
     log_success "镜像构建成功"
 else
     log_error "镜像构建失败"
@@ -72,11 +72,11 @@ fi
 
 # 3. 启动服务
 log_info "步骤3/10: 启动Docker服务..."
-if docker-compose up -d; then
+if docker compose up -d; then
     log_success "服务启动成功"
 else
     log_error "服务启动失败"
-    docker-compose logs
+    docker compose logs
     exit 1
 fi
 
@@ -111,11 +111,11 @@ echo ""
 if [ "$backend_ready" = false ] || [ "$frontend_ready" = false ]; then
     log_error "服务启动超时"
     log_info "查看容器状态："
-    docker-compose ps
+    docker compose ps
     log_info "查看后端日志："
-    docker-compose logs backend
+    docker compose logs backend
     log_info "查看前端日志："
-    docker-compose logs frontend
+    docker compose logs frontend
     exit 1
 fi
 
@@ -123,12 +123,12 @@ log_success "服务就绪（耗时 ${waited}秒）"
 
 # 5. 检查容器健康状态
 log_info "步骤5/10: 检查容器健康状态..."
-backend_status=$(docker-compose ps backend | grep -c "Up" || echo "0")
-frontend_status=$(docker-compose ps frontend | grep -c "Up" || echo "0")
+backend_status=$(docker compose ps backend | grep -c "Up" || echo "0")
+frontend_status=$(docker compose ps frontend | grep -c "Up" || echo "0")
 
 if [ "$backend_status" -eq "0" ] || [ "$frontend_status" -eq "0" ]; then
     log_error "容器状态异常"
-    docker-compose ps
+    docker compose ps
     exit 1
 fi
 log_success "容器状态正常"
@@ -220,7 +220,7 @@ persist_project_id=$(echo "$create_response" | grep -o '"project_id":"[^"]*"' | 
 
 # 重启后端容器
 log_info "  重启后端容器..."
-docker-compose restart backend
+docker compose restart backend
 sleep 5
 
 # 等待后端恢复
@@ -245,12 +245,12 @@ curl -s -X DELETE http://localhost:5000/api/projects/$persist_project_id >/dev/n
 
 # 10. 日志检查
 log_info "步骤10/10: 检查容器日志是否有错误..."
-backend_errors=$(docker-compose logs backend 2>&1 | grep -i "error\|exception\|traceback" | grep -v "DEBUG" | wc -l)
-frontend_errors=$(docker-compose logs frontend 2>&1 | grep -i "error" | grep -v "warn" | wc -l)
+backend_errors=$(docker compose logs backend 2>&1 | grep -i "error\|exception\|traceback" | grep -v "DEBUG" | wc -l)
+frontend_errors=$(docker compose logs frontend 2>&1 | grep -i "error" | grep -v "warn" | wc -l)
 
 if [ "$backend_errors" -gt 5 ]; then
     log_warning "后端日志中发现 $backend_errors 个错误"
-    docker-compose logs backend | grep -i "error\|exception" | tail -10
+    docker compose logs backend | grep -i "error\|exception" | tail -10
 else
     log_success "后端日志检查通过（$backend_errors 个错误）"
 fi
@@ -278,7 +278,7 @@ echo ""
 echo "🎯 下一步："
 echo "  1. 运行完整API测试: cd backend && python ../tests/test_e2e.py"
 echo "  2. 运行E2E测试: npx playwright test"
-echo "  3. 停止环境: docker-compose down"
+echo "  3. 停止环境: docker compose down"
 echo ""
 
 # 询问是否清理环境
@@ -287,10 +287,10 @@ if [ "${AUTO_CLEANUP}" != "false" ]; then
     echo
     if [[ $REPLY =~ ^[Yy]$ ]]; then
         log_info "停止Docker环境..."
-        docker-compose down
+        docker compose down
         log_success "环境已清理"
     else
-        log_info "保持环境运行，可手动执行: docker-compose down"
+        log_info "保持环境运行，可手动执行: docker compose down"
     fi
 fi
 

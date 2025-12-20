@@ -71,11 +71,11 @@ jobs:
       
       - name: Build Docker images
         run: |
-          docker-compose build --no-cache
+          docker compose build --no-cache
       
       - name: Start services
         run: |
-          docker-compose up -d
+          docker compose up -d
           echo "Waiting for services to be ready..."
           sleep 30
       
@@ -118,5 +118,5 @@ jobs:
       - name: Cleanup
         if: always()
         run: |
-          docker-compose down -v
+          docker compose down -v
 

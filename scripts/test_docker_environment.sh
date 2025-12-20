@@ -43,7 +43,7 @@ if ! command -v docker &> /dev/null; then
     exit 1
 fi
 
-if ! command -v docker-compose &> /dev/null && ! docker compose version &> /dev/null; then
+if ! command -v docker compose &> /dev/null && ! docker compose version &> /dev/null; then
     log_error "Docker Compose is not installed"
     exit 1
 fi
@@ -62,13 +62,13 @@ log_success "Prerequisites check passed"
 
 # 1. Clean up old environment
 log_info "Step 1/10: Cleaning up old environment..."
-docker-compose down -v 2>/dev/null || true
+docker compose down -v 2>/dev/null || true
 docker system prune -f >/dev/null 2>&1 || true
 log_success "Environment cleanup complete"
 
 # 2. Build images
 log_info "Step 2/10: Building Docker images..."
-if docker-compose build --no-cache; then
+if docker compose build --no-cache; then
     log_success "Image build successful"
 else
     log_error "Image build failed"
@@ -77,11 +77,11 @@ fi
 
 # 3. Start services
 log_info "Step 3/10: Starting Docker services..."
-if docker-compose up -d; then
+if docker compose up -d; then
     log_success "Services started successfully"
 else
     log_error "Services failed to start"
-    docker-compose logs
+    docker compose logs
     exit 1
 fi
 
@@ -116,11 +116,11 @@ echo ""
 if [ "$backend_ready" = false ] || [ "$frontend_ready" = false ]; then
     log_error "Services startup timeout"
     log_info "Viewing container status:"
-    docker-compose ps
+    docker compose ps
     log_info "Viewing backend logs:"
-    docker-compose logs backend
+    docker compose logs backend
     log_info "Viewing frontend logs:"
-    docker-compose logs frontend
+    docker compose logs frontend
     exit 1
 fi
 
@@ -128,12 +128,12 @@ log_success "Services ready (took ${waited}s)"
 
 # 5. Check container health status
 log_info "Step 5/10: Checking container health status..."
-backend_status=$(docker-compose ps backend | grep -c "Up" || echo "0")
-frontend_status=$(docker-compose ps frontend | grep -c "Up" || echo "0")
+backend_status=$(docker compose ps backend | grep -c "Up" || echo "0")
+frontend_status=$(docker compose ps frontend | grep -c "Up" || echo "0")
 
 if [ "$backend_status" -eq "0" ] || [ "$frontend_status" -eq "0" ]; then
     log_error "Container status abnormal"
-    docker-compose ps
+    docker compose ps
     exit 1
 fi
 log_success "Container status normal"
@@ -225,7 +225,7 @@ persist_project_id=$(echo "$create_response" | jq -r '.data.project_id')
 
 # Restart backend container
 log_info "  Restarting backend container..."
-docker-compose restart backend
+docker compose restart backend
 sleep 5
 
 # Wait for backend to recover
@@ -250,12 +250,12 @@ curl -s -X DELETE http://localhost:5000/api/projects/$persist_project_id >/dev/n
 
 # 10. Log check
 log_info "Step 10/10: Checking container logs for errors..."
-backend_errors=$(docker-compose logs backend 2>&1 | grep -i "error\|exception\|traceback" | grep -v "DEBUG" | wc -l)
-frontend_errors=$(docker-compose logs frontend 2>&1 | grep -i "error" | grep -v "warn" | wc -l)
+backend_errors=$(docker compose logs backend 2>&1 | grep -i "error\|exception\|traceback" | grep -v "DEBUG" | wc -l)
+frontend_errors=$(docker compose logs frontend 2>&1 | grep -i "error" | grep -v "warn" | wc -l)
 
 if [ "$backend_errors" -gt 5 ]; then
     log_warning "Found $backend_errors errors in backend logs"
-    docker-compose logs backend | grep -i "error\|exception" | tail -10
+    docker compose logs backend | grep -i "error\|exception" | tail -10
 else
     log_success "Backend log check passed ($backend_errors errors)"
 fi
@@ -283,7 +283,7 @@ echo ""
 echo "Next Steps:"
 echo "  1. Run full API tests: cd backend && python ../tests/test_e2e.py"
 echo "  2. Run E2E tests: npx playwright test"
-echo "  3. Stop environment: docker-compose down"
+echo "  3. Stop environment: docker compose down"
 echo ""
 
 # Ask whether to cleanup environment
@@ -292,10 +292,10 @@ if [ "${AUTO_CLEANUP}" != "false" ]; then
     echo
     if [[ $REPLY =~ ^[Yy]$ ]]; then
         log_info "Stopping Docker environment..."
-        docker-compose down
+        docker compose down
         log_success "Environment cleaned up"
     else
-        log_info "Keeping environment running, manually stop with: docker-compose down"
+        log_info "Keeping environment running, manually stop with: docker compose down"
     fi
 fi
 

@@ -293,7 +293,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # Docker
 docker --version
-docker-compose --version
+docker compose --version
 
 # 安装依赖
 uv sync --extra test
@@ -314,7 +314,7 @@ npm test -- --coverage
 
 # E2E测试（需要真实API key）
 cp .env.example .env  # 编辑.env填入真实API密钥
-docker-compose up -d
+docker compose up -d
 npx playwright test full-flow.spec.ts
 
 # Docker环境测试
@@ -332,8 +332,8 @@ cd backend
 uv run pytest tests/unit/test_xxx.py --pdb
 
 # 查看Docker日志
-docker-compose logs backend
-docker-compose logs frontend
+docker compose logs backend
+docker compose logs frontend
 ```
 
 ---

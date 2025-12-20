@@ -183,11 +183,11 @@ jobs:
       
       - name: Build Docker images
         run: |
-          docker-compose build --no-cache
+          docker compose build --no-cache
       
       - name: Start services
         run: |
-          docker-compose up -d
+          docker compose up -d
           echo "Waiting for services to be ready..."
           sleep 20
       
@@ -224,14 +224,14 @@ jobs:
         if: failure()
         run: |
           echo "=== Backend Logs ==="
-          docker-compose logs backend
+          docker compose logs backend
           echo "=== Frontend Logs ==="
-          docker-compose logs frontend
+          docker compose logs frontend
       
       - name: Cleanup environment
         if: always()
         run: |
-          docker-compose down -v
+          docker compose down -v
           docker system prune -f
 
   # ================================
@@ -297,7 +297,7 @@ jobs:
       
       - name: Start Docker environment
         run: |
-          docker-compose up -d
+          docker compose up -d
           sleep 25
       
       - name: Health check
@@ -357,7 +357,7 @@ jobs:
       
       - name: Cleanup
         if: always()
-        run: docker-compose down -v
+        run: docker compose down -v
 
   # ================================
   # Security Scan

@@ -145,11 +145,11 @@ if [ "$TEST_MODE" = "full" ]; then
     log_info "Step 8: E2E tests..."
     if command -v npx &> /dev/null; then
         # Check if Docker is running
-        if docker-compose ps | grep -q "Up"; then
+        if docker compose ps | grep -q "Up"; then
             log_info "  Docker environment is running, starting E2E tests..."
         else
             log_info "  Starting Docker environment..."
-            docker-compose up -d
+            docker compose up -d
             sleep 20
         fi
         

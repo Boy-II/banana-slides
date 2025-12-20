@@ -140,12 +140,12 @@ await request.get('/api/projects/{id}/export/pptx')
 npx playwright test home.spec.ts create-ppt.spec.ts
 
 # 2. API集成测试（需要后端运行）
-docker-compose up -d
+docker compose up -d
 npx playwright test api-full-flow.spec.ts
 
 # 3. UI驱动E2E测试（需要前端+后端运行）
 # 注意：默认配置已排除此文件，需要明确指定
-docker-compose up -d  # 启动后端
+docker compose up -d  # 启动后端
 cd frontend && npm run dev  # 启动前端（另一个终端）
 npx playwright test ui-full-flow.spec.ts
 
