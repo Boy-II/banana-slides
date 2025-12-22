@@ -287,18 +287,20 @@ jobs:
         run: |
           # Install uv
           curl -LsSf https://astral.sh/uv/install.sh | sh
-          echo "$HOME/.cargo/bin" >> $GITHUB_PATH
           
-          # Use full path for this step since PATH not updated yet
-          $HOME/.cargo/bin/uv sync --extra test
+          # Source the cargo env to use uv immediately
+          . "$HOME/.cargo/env"
+          
+          # Now uv is available in PATH
+          uv sync --extra test
       
       - name: Run Backend API Integration tests (requires running service)
         if: steps.check_e2e.outputs.skip != 'true' && env.GOOGLE_API_KEY != '' && env.GOOGLE_API_KEY != 'mock-api-key-for-testing'
         run: |
+          # Source cargo env to access uv
+          . "$HOME/.cargo/env"
+          
           # Run API integration tests that require real running backend service
-          # These tests use requests library to call real HTTP endpoints
-          # Tests the full AI generation workflow via API calls
-          # Requires: Real Google API key + Running backend service
           echo "Running Backend API integration tests with real service (Gemini format)"
           cd backend
           uv run pytest tests/integration/test_api_full_flow.py -v -m "integration and requires_service"
