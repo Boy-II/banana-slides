@@ -75,7 +75,7 @@ class GenAIImageProvider(ImageProvider):
         ref_images: Optional[List[Image.Image]] = None,
         aspect_ratio: str = "16:9",
         resolution: str = "2K",
-        enable_thinking: bool = False
+        enable_thinking: bool = True
     ) -> Optional[Image.Image]:
         """
         Generate image using Google GenAI SDK
