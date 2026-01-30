@@ -798,7 +798,7 @@ export const OUTPUT_LANGUAGE_OPTIONS: OutputLanguageOption[] = [
   { value: 'zh', label: '中文' },
   { value: 'ja', label: '日本語' },
   { value: 'en', label: 'English' },
-  { value: 'auto', label: '自动' },
+  { value: 'auto', label: '自動' },
 ];
 
 /**

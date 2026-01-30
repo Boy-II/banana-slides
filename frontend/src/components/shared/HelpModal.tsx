@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Sparkles, FileText, Palette, MessageSquare, Download, ChevronLeft, ChevronRight, ExternalLink, Settings, Check } from 'lucide-react';
+import { Sparkles, FileText, Palette, MessageSquare, Download, ChevronLeft, ChevronRight, Settings, Check } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { Modal } from './Modal';
 import { Button } from './Button';
@@ -8,26 +8,6 @@ interface HelpModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
-
-// 結果案例資料
-const showcases = [
-  {
-    image: 'https://github.com/user-attachments/assets/d58ce3f7-bcec-451d-a3b9-ca3c16223644',
-    title: '軟體開發最佳實踐',
-  },
-  {
-    image: 'https://github.com/user-attachments/assets/c64cd952-2cdf-4a92-8c34-0322cbf3de4e',
-    title: 'DeepSeek-V3.2 技術展示',
-  },
-  {
-    image: 'https://github.com/user-attachments/assets/383eb011-a167-4343-99eb-e1d0568830c7',
-    title: '預製菜智慧產線裝備研發和產業化',
-  },
-  {
-    image: 'https://github.com/user-attachments/assets/1a63afc9-ad05-4755-8480-fc4aa64987f1',
-    title: '錢的演變：從貝殼到紙幣的旅程',
-  },
-];
 
 // 功能介紹資料
 const features = [
@@ -77,19 +57,10 @@ const features = [
  */
 export const HelpModal: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
   const navigate = useNavigate();
-  const [currentPage, setCurrentPage] = useState(0); // 0: 引导页, 1: 案例展示, 2: 功能介绍
-  const [currentShowcase, setCurrentShowcase] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0); // 0: 引导页, 1: 功能介绍
   const [expandedFeature, setExpandedFeature] = useState<number | null>(null);
 
-  const totalPages = 3;
-
-  const handlePrevShowcase = () => {
-    setCurrentShowcase((prev) => (prev === 0 ? showcases.length - 1 : prev - 1));
-  };
-
-  const handleNextShowcase = () => {
-    setCurrentShowcase((prev) => (prev === showcases.length - 1 ? 0 : prev + 1));
-  };
+  const totalPages = 2;
 
   const handlePrevPage = () => {
     if (currentPage > 0) {
@@ -172,26 +143,6 @@ export const HelpModal: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
         </div>
       </div>
 
-      {/* 步驟 4 遇到問題可到 github issue 提出 */}
-      <div className="flex gap-4 p-4 bg-white rounded-xl border border-gray-200">
-        <div className="flex-shrink-0 w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center font-bold">
-          4
-        </div>
-        <div className="flex-1 space-y-2">
-        <h4 className="font-semibold text-gray-800">*問題回饋</h4>
-          <p className="text-sm text-gray-600">若使用過程中遇到問題，可在 github issue 提出</p>
-        </div>
-        <a
-          href="https://github.com/Anionex/banana-slides/issues"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 text-sm text-banana-600 hover:text-banana-700 font-medium"
-        >
-          <ExternalLink size={14} />
-          前往 Github issue
-        </a>
-      </div>
-
       {/* 前往設定按鈕 */}
       <div className="flex justify-center pt-2">
         <Button
@@ -208,95 +159,6 @@ export const HelpModal: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
         <p className="text-xs text-blue-800">
           💡 <strong>提示</strong>：如果您還沒有 API Key，可以前往對應服務商官網註冊取得。設定完成後，建議先進行服務測試，避免後續使用出現問題。
         </p>
-      </div>
-    </div>
-  );
-
-  const renderShowcasePage = () => (
-    <div className="space-y-4">
-      <p className="text-sm text-gray-600 text-center">
-        以下是使用BW生成的 PPT 案例展示
-      </p>
-
-      {/* 轮播图 */}
-      <div className="relative">
-        <div className="aspect-video bg-gray-100 rounded-xl overflow-hidden shadow-lg">
-          <img
-            src={showcases[currentShowcase].image}
-            alt={showcases[currentShowcase].title}
-            className="w-full h-full object-cover"
-          />
-        </div>
-
-        {/* 左右切换按钮 */}
-        <button
-          onClick={handlePrevShowcase}
-          className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center transition-all hover:scale-110"
-        >
-          <ChevronLeft size={20} />
-        </button>
-        <button
-          onClick={handleNextShowcase}
-          className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center transition-all hover:scale-110"
-        >
-          <ChevronRight size={20} />
-        </button>
-      </div>
-
-      {/* 案例标题 */}
-      <div className="text-center">
-        <h3 className="text-lg font-semibold text-gray-800">
-          {showcases[currentShowcase].title}
-        </h3>
-      </div>
-
-      {/* 指示点 */}
-      <div className="flex justify-center gap-2">
-        {showcases.map((_, idx) => (
-          <button
-            key={idx}
-            onClick={() => setCurrentShowcase(idx)}
-            className={`w-2 h-2 rounded-full transition-all ${
-              idx === currentShowcase
-                ? 'bg-banana-500 w-6'
-                : 'bg-gray-300 hover:bg-gray-400'
-            }`}
-          />
-        ))}
-      </div>
-
-      {/* 缩略图网格 */}
-      <div className="grid grid-cols-4 gap-2 mt-4">
-        {showcases.map((showcase, idx) => (
-          <button
-            key={idx}
-            onClick={() => setCurrentShowcase(idx)}
-            className={`aspect-video rounded-lg overflow-hidden border-2 transition-all ${
-              idx === currentShowcase
-                ? 'border-banana-500 ring-2 ring-banana-200'
-                : 'border-transparent hover:border-gray-300'
-            }`}
-          >
-            <img
-              src={showcase.image}
-              alt={showcase.title}
-              className="w-full h-full object-cover"
-            />
-          </button>
-        ))}
-      </div>
-
-      {/* 更多案例連結 */}
-      <div className="text-center pt-4">
-        <a
-          href="https://github.com/Anionex/banana-slides/issues/2"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 text-sm text-banana-600 hover:text-banana-700 font-medium"
-        >
-          <ExternalLink size={14} />
-          查看更多使用案例
-        </a>
       </div>
     </div>
   );
@@ -358,7 +220,7 @@ export const HelpModal: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
             <span className="text-sm font-medium text-gray-700">BW · Banana Slides</span>
           </div>
           <h2 className="text-2xl font-bold text-gray-800">
-            {currentPage === 0 ? '快速開始' : currentPage === 1 ? '功能介紹' : '結果案例'}
+            {currentPage === 0 ? '快速開始' : '功能介紹'}
           </h2>
           <p className="text-sm text-gray-500 mt-1">
             {currentPage === 0 ? '完成基礎設定，開啟 AI 創作之旅' : '探索如何使用 AI 快速建立精美 PPT'}
@@ -376,7 +238,7 @@ export const HelpModal: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
                   ? 'bg-banana-500 w-8'
                   : 'bg-gray-300 hover:bg-gray-400 w-2'
               }`}
-              title={idx === 0 ? '引導頁' : idx === 1 ? '功能介紹' : '案例展示'}
+              title={idx === 0 ? '引導頁' : '功能介紹'}
             />
           ))}
         </div>
@@ -385,7 +247,6 @@ export const HelpModal: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
         <div className="min-h-[400px]">
           {currentPage === 0 && renderGuidePage()}
           {currentPage === 1 && renderFeaturesPage()}
-          {currentPage === 2 && renderShowcasePage()}
         </div>
 
         {/* 底部導覽 */}
@@ -402,16 +263,6 @@ export const HelpModal: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
               </Button>
             )}
           </div>
-
-          <a
-            href="https://github.com/Anionex/banana-slides"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm text-gray-500 hover:text-gray-700 flex items-center gap-1"
-          >
-            <ExternalLink size={14} />
-            GitHub 倉庫
-          </a>
 
           <div className="flex items-center gap-2">
             {currentPage < totalPages - 1 ? (
