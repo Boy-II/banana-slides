@@ -13,7 +13,7 @@ export const Home: React.FC = () => {
   const navigate = useNavigate();
   const { initializeProject, isGlobalLoading } = useProjectStore();
   const { show, ToastContainer } = useToast();
-  
+
   const [activeTab, setActiveTab] = useState<CreationType>('idea');
   const [content, setContent] = useState('');
   const [selectedTemplate, setSelectedTemplate] = useState<File | null>(null);
@@ -199,7 +199,7 @@ export const Home: React.FC = () => {
     // 檢查是否是PPT檔案，提示建議使用PDF
     const fileExt = file.name.split('.').pop()?.toLowerCase();
     if (fileExt === 'ppt' || fileExt === 'pptx')
-      show({  message: '💡 提示：建議將PPT轉換為PDF格式上傳，可獲得更好的解析效果',    type: 'info' });
+      show({ message: '💡 提示：建議將PPT轉換為PDF格式上傳，可獲得更好的解析效果', type: 'info' });
 
     setIsUploadingFile(true);
     try {
@@ -347,7 +347,7 @@ export const Home: React.FC = () => {
     if (templateFile) {
       setSelectedTemplate(templateFile);
     }
-    
+
     // 处理模板 ID
     if (templateId) {
       // 判断是用户模板还是预设模板
@@ -588,18 +588,18 @@ export const Home: React.FC = () => {
             <span className="text-2xl animate-pulse"><Sparkles size={20} color="orange" /></span>
             <span className="text-sm font-medium text-gray-700">基於 nano banana pro🍌 的原生 AI PPT 生成器</span>
           </div>
-          
+
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight">
             <span className="bg-gradient-to-r from-yellow-600 via-orange-500 to-pink-500 bg-clip-text text-transparent" style={{
               backgroundSize: '200% auto',
               animation: 'gradient 3s ease infinite',
             }}>
-              BW · Banana Slides
+              BW·AI BANANA PPT生成器
             </span>
           </h1>
-          
+
           <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto font-light">
-            Vibe your PPT like vibing code
+            快速生成你想要的PPT。
           </p>
 
           {/* 特性標籤 */}
@@ -632,11 +632,10 @@ export const Home: React.FC = () => {
                 <button
                   key={type}
                   onClick={() => setActiveTab(type)}
-                  className={`flex-1 flex items-center justify-center gap-1.5 md:gap-2 px-3 md:px-6 py-2.5 md:py-3 rounded-lg font-medium transition-all text-sm md:text-base touch-manipulation ${
-                    activeTab === type
-                      ? 'bg-gradient-to-r from-banana-500 to-banana-600 text-black shadow-yellow'
-                      : 'bg-white border border-gray-200 text-gray-700 hover:bg-banana-50 active:bg-banana-100'
-                  }`}
+                  className={`flex-1 flex items-center justify-center gap-1.5 md:gap-2 px-3 md:px-6 py-2.5 md:py-3 rounded-lg font-medium transition-all text-sm md:text-base touch-manipulation ${activeTab === type
+                    ? 'bg-gradient-to-r from-banana-500 to-banana-600 text-black shadow-yellow'
+                    : 'bg-white border border-gray-200 text-gray-700 hover:bg-banana-50 active:bg-banana-100'
+                    }`}
                 >
                   <span className="scale-90 md:scale-100">{config.icon}</span>
                   <span className="truncate">{config.label}</span>
@@ -759,7 +758,7 @@ export const Home: React.FC = () => {
                 </div>
               </label>
             </div>
-            
+
             {/* 根據模式顯示不同的內容 */}
             {useTemplateStyle ? (
               <div className="space-y-3">
@@ -788,7 +787,7 @@ export const Home: React.FC = () => {
                         >
                           {preset.name}
                         </button>
-                        
+
                         {/* 悬停时显示预览图片 */}
                         {hoveredPresetId === preset.id && preset.previewImage && (
                           <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 z-50 animate-in fade-in slide-in-from-bottom-2 duration-200">
@@ -816,7 +815,7 @@ export const Home: React.FC = () => {
                     ))}
                   </div>
                 </div>
-                
+
                 <p className="text-xs text-gray-500">
                   💡 提示：點擊預設風格快速填入，或自訂描述風格、配色、版面等要求
                 </p>
@@ -856,7 +855,7 @@ export const Home: React.FC = () => {
         multiple={true}
         initialSelectedIds={selectedFileIds}
       />
-      
+
       <FilePreviewModal fileId={previewFileId} onClose={() => setPreviewFileId(null)} />
       {/* 幫助視窗 */}
       <HelpModal
