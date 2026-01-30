@@ -236,12 +236,12 @@ const settingsSections: SectionConfig[] = [
     ],
   },
   {
-    title: '百度 OCR 設定',
+    title: 'OCR 設定（實驗中）',
     icon: <FileText size={20} />,
     fields: [
       {
         key: 'baidu_ocr_api_key',
-        label: '百度 OCR API Key',
+        label: 'OCR API Key',
         type: 'password',
         placeholder: '輸入百度 OCR API Key',
         sensitiveField: true,
@@ -499,13 +499,12 @@ export const Settings: React.FC = () => {
                 key={option.value}
                 type="button"
                 onClick={() => handleFieldChange(field.key, option.value)}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                  value === option.value
-                    ? option.value === 'openai'
-                      ? 'bg-gradient-to-r from-sky-500 to-blue-600 text-white shadow-md'
-                      : 'bg-gradient-to-r from-emerald-500 to-green-600 text-white shadow-md'
-                    : 'bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-gray-300'
-                }`}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${value === option.value
+                  ? option.value === 'openai'
+                    ? 'bg-gradient-to-r from-sky-500 to-blue-600 text-white shadow-md'
+                    : 'bg-gradient-to-r from-emerald-500 to-green-600 text-white shadow-md'
+                  : 'bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-gray-300'
+                  }`}
               >
                 {option.label}
               </button>
@@ -554,14 +553,12 @@ export const Settings: React.FC = () => {
             <button
               type="button"
               onClick={() => handleFieldChange(field.key, !isEnabled)}
-              className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-banana-500 focus:ring-offset-2 ${
-                isEnabled ? 'bg-banana-500' : 'bg-gray-200'
-              }`}
+              className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-banana-500 focus:ring-offset-2 ${isEnabled ? 'bg-banana-500' : 'bg-gray-200'
+                }`}
             >
               <span
-                className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                  isEnabled ? 'translate-x-6' : 'translate-x-1'
-                }`}
+                className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${isEnabled ? 'translate-x-6' : 'translate-x-1'
+                  }`}
               />
             </button>
           </div>
@@ -593,7 +590,7 @@ export const Settings: React.FC = () => {
           placeholder={placeholder}
           value={value as string | number}
           onChange={(e) => {
-            const newValue = field.type === 'number' 
+            const newValue = field.type === 'number'
               ? parseInt(e.target.value) || (field.min ?? 0)
               : e.target.value;
             handleFieldChange(field.key, newValue);
@@ -692,8 +689,8 @@ export const Settings: React.FC = () => {
               },
               {
                 key: 'baidu-inpaint',
-                title: 'Baidu 圖像修復',
-                description: '使用測試圖片執行修復，驗證百度 inpaint 服務',
+                title: '圖像修復（實驗中）',
+                description: '使用測試圖片執行修復，驗證 inpaint 服務',
                 action: api.testBaiduInpaint,
                 formatDetail: (data: any) => (data?.image_size ? `輸出尺寸：${data.image_size[0]}x${data.image_size[1]}` : ''),
               },

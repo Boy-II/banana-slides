@@ -1145,8 +1145,8 @@ export const SlidePreview: React.FC = () => {
               <button
                 onClick={toggleMultiSelectMode}
                 className={`px-2 py-1 rounded transition-colors flex items-center gap-1 ${isMultiSelectMode
-                    ? 'bg-banana-100 text-banana-700 hover:bg-banana-200'
-                    : 'text-gray-500 hover:bg-gray-100'
+                  ? 'bg-banana-100 text-banana-700 hover:bg-banana-200'
+                  : 'text-gray-500 hover:bg-gray-100'
                   }`}
               >
                 {isMultiSelectMode ? <CheckSquare size={14} /> : <Square size={14} />}
@@ -1182,8 +1182,8 @@ export const SlidePreview: React.FC = () => {
                         }
                       }}
                       className={`w-20 h-14 rounded border-2 transition-all ${selectedIndex === index
-                          ? 'border-banana-500 shadow-md'
-                          : 'border-gray-200'
+                        ? 'border-banana-500 shadow-md'
+                        : 'border-gray-200'
                         } ${isMultiSelectMode && page.id && selectedPageIds.has(page.id) ? 'ring-2 ring-banana-400' : ''}`}
                     >
                       {page.generated_image_path ? (
@@ -1206,8 +1206,8 @@ export const SlidePreview: React.FC = () => {
                           togglePageSelection(page.id!);
                         }}
                         className={`absolute -top-1 -right-1 w-5 h-5 rounded-full flex items-center justify-center transition-all ${selectedPageIds.has(page.id)
-                            ? 'bg-banana-500 text-white'
-                            : 'bg-white border-2 border-gray-300'
+                          ? 'bg-banana-500 text-white'
+                          : 'bg-white border-2 border-gray-300'
                           }`}
                       >
                         {selectedPageIds.has(page.id) && <Check size={12} />}
@@ -1224,8 +1224,8 @@ export const SlidePreview: React.FC = () => {
                           togglePageSelection(page.id!);
                         }}
                         className={`absolute top-2 left-2 z-10 w-6 h-6 rounded flex items-center justify-center transition-all ${selectedPageIds.has(page.id)
-                            ? 'bg-banana-500 text-white shadow-md'
-                            : 'bg-white/90 border-2 border-gray-300 hover:border-banana-400'
+                          ? 'bg-banana-500 text-white shadow-md'
+                          : 'bg-white/90 border-2 border-gray-300 hover:border-banana-400'
                           }`}
                       >
                         {selectedPageIds.has(page.id) && <Check size={14} />}

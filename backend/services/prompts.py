@@ -16,8 +16,8 @@ logger = logging.getLogger(__name__)
 LANGUAGE_CONFIG = {
     'zh': {
         'name': '中文',
-        'instruction': '请使用全中文输出。',
-        'ppt_text': 'PPT文字请使用全中文。'
+        'instruction': '請使用繁體中文輸出。',
+        'ppt_text': 'PPT文字請使用繁體中文。'
     },
     'ja': {
         'name': '日本語',

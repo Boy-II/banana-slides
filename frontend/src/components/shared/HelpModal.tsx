@@ -114,7 +114,7 @@ export const HelpModal: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
       <div className="text-center space-y-3">
         <div className="inline-flex items-center justify-center mr-4">
           <img
-            src="/logo.png"
+            src="/logo.svg"
             alt="BW Logo"
             className="h-16 w-16 object-contain"
           />
