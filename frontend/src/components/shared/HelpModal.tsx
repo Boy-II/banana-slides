@@ -9,64 +9,64 @@ interface HelpModalProps {
   onClose: () => void;
 }
 
-// 结果案例数据
+// 結果案例資料
 const showcases = [
   {
     image: 'https://github.com/user-attachments/assets/d58ce3f7-bcec-451d-a3b9-ca3c16223644',
-    title: '软件开发最佳实践',
+    title: '軟體開發最佳實踐',
   },
   {
     image: 'https://github.com/user-attachments/assets/c64cd952-2cdf-4a92-8c34-0322cbf3de4e',
-    title: 'DeepSeek-V3.2技术展示',
+    title: 'DeepSeek-V3.2 技術展示',
   },
   {
     image: 'https://github.com/user-attachments/assets/383eb011-a167-4343-99eb-e1d0568830c7',
-    title: '预制菜智能产线装备研发和产业化',
+    title: '預製菜智慧產線裝備研發和產業化',
   },
   {
     image: 'https://github.com/user-attachments/assets/1a63afc9-ad05-4755-8480-fc4aa64987f1',
-    title: '钱的演变：从贝壳到纸币的旅程',
+    title: '錢的演變：從貝殼到紙幣的旅程',
   },
 ];
 
-// 功能介绍数据
+// 功能介紹資料
 const features = [
   {
     icon: <Sparkles className="text-yellow-500" size={24} />,
-    title: '灵活多样的创作路径',
-    description: '支持想法、大纲、页面描述三种起步方式，满足不同创作习惯。',
+    title: '靈活多樣的創作路徑',
+    description: '支援想法、大綱、頁面描述三種起步方式，滿足不同創作習慣。',
     details: [
-      '一句话生成：输入一个主题，AI 自动生成结构清晰的大纲和逐页内容描述',
-      '自然语言编辑：支持以 Vibe 形式口头修改大纲或描述，AI 实时响应调整',
-      '大纲/描述模式：既可一键批量生成，也可手动调整细节',
+      '一句話生成：輸入一個主題，AI 自動生成結構清晰的大綱和逐頁內容描述',
+      '自然語言編輯：支援以 Vibe 形式口頭修改大綱或描述，AI 即時回應調整',
+      '大綱/描述模式：既可一鍵批量生成，也可手動調整細節',
     ],
   },
   {
     icon: <FileText className="text-blue-500" size={24} />,
-    title: '强大的素材解析能力',
-    description: '上传多种格式文件，自动解析内容，为生成提供丰富素材。',
+    title: '強大的素材解析能力',
+    description: '上傳多種格式檔案，自動解析內容，為生成提供豐富素材。',
     details: [
-      '多格式支持：上传 PDF/Docx/MD/Txt 等文件，后台自动解析内容',
-      '智能提取：自动识别文本中的关键点、图片链接和图表信息',
-      '风格参考：支持上传参考图片或模板，定制 PPT 风格',
+      '多格式支援：上傳 PDF/Docx/MD/Txt 等檔案，後台自動解析內容',
+      '智慧提取：自動識別文字中的關鍵點、圖片連結和圖表資訊',
+      '風格參考：支援上傳參考圖片或範本，客製 PPT 風格',
     ],
   },
   {
     icon: <MessageSquare className="text-green-500" size={24} />,
-    title: '"Vibe" 式自然语言修改',
-    description: '不再受限于复杂的菜单按钮，直接通过自然语言下达修改指令。',
+    title: '「Vibe」式自然語言修改',
+    description: '不再受限於複雜的選單按鈕，直接透過自然語言下達修改指令。',
     details: [
-      '局部重绘：对不满意的区域进行口头式修改（如"把这个图换成饼图"）',
-      '整页优化：基于 nano banana pro🍌 生成高清、风格统一的页面',
+      '局部重繪：對不滿意的區域進行口頭式修改（如「把這個圖換成圓餅圖」）',
+      '整頁優化：基於 nano banana pro🍌 生成高清、風格統一的頁面',
     ],
   },
   {
     icon: <Download className="text-purple-500" size={24} />,
-    title: '开箱即用的格式导出',
-    description: '一键导出标准格式，直接演示无需调整。',
+    title: '開箱即用的格式匯出',
+    description: '一鍵匯出標準格式，直接演示無需調整。',
     details: [
-      '多格式支持：一键导出标准 PPTX 或 PDF 文件',
-      '完美适配：默认 16:9 比例，排版无需二次调整',
+      '多格式支援：一鍵匯出標準 PPTX 或 PDF 檔案',
+      '完美適配：預設 16:9 比例，排版無需二次調整',
     ],
   },
 ];
@@ -110,76 +110,76 @@ export const HelpModal: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
 
   const renderGuidePage = () => (
     <div className="space-y-6">
-      {/* 欢迎标题 */}
+      {/* 歡迎標題 */}
       <div className="text-center space-y-3">
         <div className="inline-flex items-center justify-center mr-4">
           <img
             src="/logo.png"
-            alt="蕉幻 Logo"
+            alt="BW Logo"
             className="h-16 w-16 object-contain"
           />
         </div>
-        <h3 className="text-2xl font-bold text-gray-800">欢迎使用蕉幻！</h3>
-        <p className="text-sm text-gray-600">在开始前，让我们先完成基础配置</p>
+        <h3 className="text-2xl font-bold text-gray-800">歡迎使用BW！</h3>
+        <p className="text-sm text-gray-600">在開始前，讓我們先完成基礎設定</p>
       </div>
 
-      {/* 配置步骤 */}
+      {/* 設定步驟 */}
       <div className="space-y-4">
-        {/* 步骤 1 */}
+        {/* 步驟 1 */}
         <div className="flex gap-4 p-4 bg-gradient-to-r from-banana-50 to-orange-50 rounded-xl border border-banana-200">
           <div className="flex-shrink-0 w-8 h-8 bg-banana-500 text-white rounded-full flex items-center justify-center font-bold">
             1
           </div>
           <div className="flex-1 space-y-2">
-            <h4 className="font-semibold text-gray-800">配置 API Key</h4>
+            <h4 className="font-semibold text-gray-800">設定 API Key</h4>
             <p className="text-sm text-gray-600">
-              前往设置页面，配置项目需要使用的API服务，包括：
+              前往設定頁面，設定專案需要使用的 API 服務，包括：
             </p>
             <ul className="text-sm text-gray-600 space-y-1 pl-4">
-              <li>• 您的 AI 服务提供商的 API Base 和 API Key</li>
-              <li>• 配置文本、图像生成模型(banana pro)和图像描述模型</li>
-              <li>• 若需要文件解析功能，请配置 MinerU Token</li>
-              <li>• 若需要可编辑导出功能，请配置MinerU TOKEN 和 Baidu API KEY</li>
+              <li>• 您的 AI 服務提供商的 API Base 和 API Key</li>
+              <li>• 設定文字、圖像生成模型 (banana pro) 和圖像描述模型</li>
+              <li>• 若需要檔案解析功能，請設定 MinerU Token</li>
+              <li>• 若需要可編輯匯出功能，請設定 MinerU TOKEN 和 Baidu API KEY</li>
 
             </ul>
           </div>
         </div>
 
-        {/* 步骤 2 */}
+        {/* 步驟 2 */}
         <div className="flex gap-4 p-4 bg-white rounded-xl border border-gray-200">
           <div className="flex-shrink-0 w-8 h-8 bg-orange-500 text-white rounded-full flex items-center justify-center font-bold">
             2
           </div>
           <div className="flex-1 space-y-2">
-            <h4 className="font-semibold text-gray-800">保存并测试</h4>
+            <h4 className="font-semibold text-gray-800">儲存並測試</h4>
             <p className="text-sm text-gray-600">
-              配置完成后，务必点击「保存设置」按钮，然后在页面底部进行服务测试，确保各项服务正常工作。
+              設定完成後，務必點擊「儲存設定」按鈕，然後在頁面底部進行服務測試，確保各項服務正常運作。
             </p>
           </div>
         </div>
 
-        {/* 步骤 3 */}
+        {/* 步驟 3 */}
         <div className="flex gap-4 p-4 bg-white rounded-xl border border-gray-200">
           <div className="flex-shrink-0 w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center font-bold">
             <Check size={18} />
           </div>
           <div className="flex-1 space-y-2">
-            <h4 className="font-semibold text-gray-800">开始创作</h4>
+            <h4 className="font-semibold text-gray-800">開始創作</h4>
             <p className="text-sm text-gray-600">
-              配置成功后，返回首页即可开始使用 AI 生成精美的 PPT！
+              設定成功後，返回首頁即可開始使用 AI 生成精美的 PPT！
             </p>
           </div>
         </div>
       </div>
 
-      {/* 步骤 4 遇到问题可到github issue提出 */}
+      {/* 步驟 4 遇到問題可到 github issue 提出 */}
       <div className="flex gap-4 p-4 bg-white rounded-xl border border-gray-200">
         <div className="flex-shrink-0 w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center font-bold">
           4
         </div>
         <div className="flex-1 space-y-2">
-        <h4 className="font-semibold text-gray-800">*问题反馈</h4>
-          <p className="text-sm text-gray-600">若使用过程中遇到问题，可在github issue提出</p>
+        <h4 className="font-semibold text-gray-800">*問題回饋</h4>
+          <p className="text-sm text-gray-600">若使用過程中遇到問題，可在 github issue 提出</p>
         </div>
         <a
           href="https://github.com/Anionex/banana-slides/issues"
@@ -188,25 +188,25 @@ export const HelpModal: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
           className="inline-flex items-center gap-1.5 text-sm text-banana-600 hover:text-banana-700 font-medium"
         >
           <ExternalLink size={14} />
-          前往Github issue
+          前往 Github issue
         </a>
       </div>
 
-      {/* 前往设置按钮 */}
+      {/* 前往設定按鈕 */}
       <div className="flex justify-center pt-2">
         <Button
           onClick={handleGoToSettings}
           className="bg-banana-500 hover:bg-banana-600 text-black shadow-lg"
           icon={<Settings size={18} />}
         >
-          前往设置页面
+          前往設定頁面
         </Button>
       </div>
 
       {/* 提示 */}
       <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
         <p className="text-xs text-blue-800">
-          💡 <strong>提示</strong>：如果您还没有 API Key，可以前往对应服务商官网注册获取。配置完成后，建议先进行服务测试，避免后续使用出现问题。
+          💡 <strong>提示</strong>：如果您還沒有 API Key，可以前往對應服務商官網註冊取得。設定完成後，建議先進行服務測試，避免後續使用出現問題。
         </p>
       </div>
     </div>
@@ -215,7 +215,7 @@ export const HelpModal: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
   const renderShowcasePage = () => (
     <div className="space-y-4">
       <p className="text-sm text-gray-600 text-center">
-        以下是使用蕉幻生成的 PPT 案例展示
+        以下是使用BW生成的 PPT 案例展示
       </p>
 
       {/* 轮播图 */}
@@ -286,7 +286,7 @@ export const HelpModal: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
         ))}
       </div>
 
-      {/* 更多案例链接 */}
+      {/* 更多案例連結 */}
       <div className="text-center pt-4">
         <a
           href="https://github.com/Anionex/banana-slides/issues/2"
@@ -351,21 +351,21 @@ export const HelpModal: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose} title="" size="lg">
       <div className="space-y-6">
-        {/* 标题区 */}
+        {/* 標題區 */}
         <div className="text-center pb-4 border-b border-gray-100">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-banana-50 to-orange-50 rounded-full mb-3">
             <Palette size={18} className="text-banana-600" />
-            <span className="text-sm font-medium text-gray-700">蕉幻 · Banana Slides</span>
+            <span className="text-sm font-medium text-gray-700">BW · Banana Slides</span>
           </div>
           <h2 className="text-2xl font-bold text-gray-800">
-            {currentPage === 0 ? '快速开始' : currentPage === 1 ? '功能介绍' : '结果案例'}
+            {currentPage === 0 ? '快速開始' : currentPage === 1 ? '功能介紹' : '結果案例'}
           </h2>
           <p className="text-sm text-gray-500 mt-1">
-            {currentPage === 0 ? '完成基础配置，开启 AI 创作之旅' : '探索如何使用 AI 快速创建精美 PPT'}
+            {currentPage === 0 ? '完成基礎設定，開啟 AI 創作之旅' : '探索如何使用 AI 快速建立精美 PPT'}
           </p>
         </div>
 
-        {/* 页面指示器 */}
+        {/* 頁面指示器 */}
         <div className="flex justify-center gap-2">
           {Array.from({ length: totalPages }).map((_, idx) => (
             <button
@@ -376,7 +376,7 @@ export const HelpModal: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
                   ? 'bg-banana-500 w-8'
                   : 'bg-gray-300 hover:bg-gray-400 w-2'
               }`}
-              title={idx === 0 ? '引导页' : idx === 1 ? '功能介绍' : '案例展示'}
+              title={idx === 0 ? '引導頁' : idx === 1 ? '功能介紹' : '案例展示'}
             />
           ))}
         </div>
@@ -388,7 +388,7 @@ export const HelpModal: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
           {currentPage === 2 && renderShowcasePage()}
         </div>
 
-        {/* 底部导航 */}
+        {/* 底部導覽 */}
         <div className="pt-4 border-t flex justify-between items-center">
           <div className="flex items-center gap-2">
             {currentPage > 0 && (
@@ -398,7 +398,7 @@ export const HelpModal: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
                 icon={<ChevronLeft size={16} />}
                 size="sm"
               >
-                上一页
+                上一頁
               </Button>
             )}
           </div>
@@ -410,7 +410,7 @@ export const HelpModal: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
             className="text-sm text-gray-500 hover:text-gray-700 flex items-center gap-1"
           >
             <ExternalLink size={14} />
-            GitHub 仓库
+            GitHub 倉庫
           </a>
 
           <div className="flex items-center gap-2">
@@ -421,11 +421,11 @@ export const HelpModal: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
                 size="sm"
                 className="bg-banana-500 hover:bg-banana-600 text-black"
               >
-                下一页
+                下一頁
               </Button>
             ) : (
               <Button variant="ghost" onClick={onClose} size="sm">
-                关闭
+                關閉
               </Button>
             )}
           </div>

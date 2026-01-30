@@ -7,7 +7,7 @@ import type { OutputLanguage } from '@/api/endpoints';
 import { OUTPUT_LANGUAGE_OPTIONS } from '@/api/endpoints';
 import type { Settings as SettingsType } from '@/types';
 
-// 配置项类型定义
+// 設定項類型定義
 type FieldType = 'text' | 'password' | 'number' | 'select' | 'buttons' | 'switch';
 
 interface FieldConfig {
@@ -16,9 +16,9 @@ interface FieldConfig {
   type: FieldType;
   placeholder?: string;
   description?: string;
-  sensitiveField?: boolean;  // 是否为敏感字段（如 API Key）
-  lengthKey?: keyof SettingsType;  // 用于显示已有长度的 key（如 api_key_length）
-  options?: { value: string; label: string }[];  // select 类型的选项
+  sensitiveField?: boolean;  // 是否為敏感欄位（如 API Key）
+  lengthKey?: keyof SettingsType;  // 用於顯示已有長度的 key（如 api_key_length）
+  options?: { value: string; label: string }[];  // select 類型的選項
   min?: number;
   max?: number;
 }
@@ -37,7 +37,7 @@ interface ServiceTestState {
   detail?: string;
 }
 
-// 初始表单数据
+// 初始表單資料
 const initialFormData = {
   ai_provider_format: 'gemini' as 'openai' | 'gemini',
   api_base_url: '',
@@ -52,7 +52,7 @@ const initialFormData = {
   max_description_workers: 5,
   max_image_workers: 8,
   output_language: 'zh' as OutputLanguage,
-  // 推理模式配置（分别控制文本和图像）
+  // 推理模式設定（分別控制文字和圖像）
   enable_text_reasoning: false,
   text_thinking_budget: 1024,
   enable_image_reasoning: false,
@@ -60,17 +60,17 @@ const initialFormData = {
   baidu_ocr_api_key: '',
 };
 
-// 配置驱动的表单区块定义
+// 設定驅動的表單區塊定義
 const settingsSections: SectionConfig[] = [
   {
-    title: '大模型 API 配置',
+    title: '大型模型 API 設定',
     icon: <Key size={20} />,
     fields: [
       {
         key: 'ai_provider_format',
         label: 'AI 提供商格式',
         type: 'buttons',
-        description: '选择 API 请求格式，影响后端如何构造和发送请求。保存设置后生效。',
+        description: '選擇 API 請求格式，影響後端如何建構和發送請求。儲存設定後生效。',
         options: [
           { value: 'openai', label: 'OpenAI 格式' },
           { value: 'gemini', label: 'Gemini 格式' },
@@ -81,77 +81,77 @@ const settingsSections: SectionConfig[] = [
         label: 'API Base URL',
         type: 'text',
         placeholder: 'https://api.example.com',
-        description: '设置大模型提供商 API 的基础 URL',
+        description: '設定大型模型提供商 API 的基礎 URL',
       },
       {
         key: 'api_key',
         label: 'API Key',
         type: 'password',
-        placeholder: '输入新的 API Key',
+        placeholder: '輸入新的 API Key',
         sensitiveField: true,
         lengthKey: 'api_key_length',
-        description: '留空则保持当前设置不变，输入新值则更新',
+        description: '留空則保持目前設定不變，輸入新值則更新',
       },
     ],
   },
   {
-    title: '模型配置',
+    title: '模型設定',
     icon: <FileText size={20} />,
     fields: [
       {
         key: 'text_model',
-        label: '文本大模型',
+        label: '文字大型模型',
         type: 'text',
-        placeholder: '留空使用环境变量配置 (如: gemini-3-flash-preview)',
-        description: '用于生成大纲、描述等文本内容的模型名称',
+        placeholder: '留空使用環境變數設定 (如: gemini-3-flash-preview)',
+        description: '用於生成大綱、描述等文字內容的模型名稱',
       },
       {
         key: 'image_model',
-        label: '图像生成模型',
+        label: '圖像生成模型',
         type: 'text',
-        placeholder: '留空使用环境变量配置 (如: imagen-3.0-generate-001)',
-        description: '用于生成页面图片的模型名称',
+        placeholder: '留空使用環境變數設定 (如: imagen-3.0-generate-001)',
+        description: '用於生成頁面圖片的模型名稱',
       },
       {
         key: 'image_caption_model',
-        label: '图片识别模型',
+        label: '圖片識別模型',
         type: 'text',
-        placeholder: '留空使用环境变量配置 (如: gemini-3-flash-preview)',
-        description: '用于识别参考文件中的图片并生成描述',
+        placeholder: '留空使用環境變數設定 (如: gemini-3-flash-preview)',
+        description: '用於識別參考檔案中的圖片並生成描述',
       },
     ],
   },
   {
-    title: 'MinerU 配置',
+    title: 'MinerU 設定',
     icon: <FileText size={20} />,
     fields: [
       {
         key: 'mineru_api_base',
         label: 'MinerU API Base',
         type: 'text',
-        placeholder: '留空使用环境变量配置 (如: https://mineru.net)',
-        description: 'MinerU 服务地址，用于解析参考文件',
+        placeholder: '留空使用環境變數設定 (如: https://mineru.net)',
+        description: 'MinerU 服務位址，用於解析參考檔案',
       },
       {
         key: 'mineru_token',
         label: 'MinerU Token',
         type: 'password',
-        placeholder: '输入新的 MinerU Token',
+        placeholder: '輸入新的 MinerU Token',
         sensitiveField: true,
         lengthKey: 'mineru_token_length',
-        description: '留空则保持当前设置不变，输入新值则更新',
+        description: '留空則保持目前設定不變，輸入新值則更新',
       },
     ],
   },
   {
-    title: '图像生成配置',
+    title: '圖像生成設定',
     icon: <Image size={20} />,
     fields: [
       {
         key: 'image_resolution',
-        label: '图像清晰度（某些OpenAI格式中转调整该值无效）',
+        label: '圖像清晰度（某些 OpenAI 格式中轉調整該值無效）',
         type: 'select',
-        description: '更高的清晰度会生成更详细的图像，但需要更长时间',
+        description: '更高的清晰度會生成更詳細的圖像，但需要更長時間',
         options: [
           { value: '1K', label: '1K (1024px)' },
           { value: '2K', label: '2K (2048px)' },
@@ -161,98 +161,98 @@ const settingsSections: SectionConfig[] = [
     ],
   },
   {
-    title: '性能配置',
+    title: '效能設定',
     icon: <Zap size={20} />,
     fields: [
       {
         key: 'max_description_workers',
-        label: '描述生成最大并发数',
+        label: '描述生成最大並行數',
         type: 'number',
         min: 1,
         max: 20,
-        description: '同时生成描述的最大工作线程数 (1-20)，越大速度越快',
+        description: '同時生成描述的最大工作執行緒數 (1-20)，越大速度越快',
       },
       {
         key: 'max_image_workers',
-        label: '图像生成最大并发数',
+        label: '圖像生成最大並行數',
         type: 'number',
         min: 1,
         max: 20,
-        description: '同时生成图像的最大工作线程数 (1-20)，越大速度越快',
+        description: '同時生成圖像的最大工作執行緒數 (1-20)，越大速度越快',
       },
     ],
   },
   {
-    title: '输出语言设置',
+    title: '輸出語言設定',
     icon: <Globe size={20} />,
     fields: [
       {
         key: 'output_language',
-        label: '默认输出语言',
+        label: '預設輸出語言',
         type: 'buttons',
-        description: 'AI 生成内容时使用的默认语言',
+        description: 'AI 生成內容時使用的預設語言',
         options: OUTPUT_LANGUAGE_OPTIONS,
       },
     ],
   },
   {
-    title: '文本推理模式',
+    title: '文字推理模式',
     icon: <Brain size={20} />,
     fields: [
       {
         key: 'enable_text_reasoning',
-        label: '启用文本推理',
+        label: '啟用文字推理',
         type: 'switch',
-        description: '开启后，文本生成（大纲、描述等）会使用 extended thinking 进行深度推理',
+        description: '開啟後，文字生成（大綱、描述等）會使用 extended thinking 進行深度推理',
       },
       {
         key: 'text_thinking_budget',
-        label: '文本思考负载',
+        label: '文字思考負載',
         type: 'number',
         min: 1,
         max: 8192,
-        description: '文本推理的思考 token 预算 (1-8192)，数值越大推理越深入',
+        description: '文字推理的思考 token 預算 (1-8192)，數值越大推理越深入',
       },
     ],
   },
   {
-    title: '图像推理模式',
+    title: '圖像推理模式',
     icon: <Brain size={20} />,
     fields: [
       {
         key: 'enable_image_reasoning',
-        label: '启用图像推理',
+        label: '啟用圖像推理',
         type: 'switch',
-        description: '开启后，图像生成会使用思考链模式，可能获得更好的构图效果',
+        description: '開啟後，圖像生成會使用思考鏈模式，可能獲得更好的構圖效果',
       },
       {
         key: 'image_thinking_budget',
-        label: '图像思考负载',
+        label: '圖像思考負載',
         type: 'number',
         min: 1,
         max: 8192,
-        description: '图像推理的思考 token 预算 (1-8192)，数值越大推理越深入',
+        description: '圖像推理的思考 token 預算 (1-8192)，數值越大推理越深入',
       },
     ],
   },
   {
-    title: '百度 OCR 配置',
+    title: '百度 OCR 設定',
     icon: <FileText size={20} />,
     fields: [
       {
         key: 'baidu_ocr_api_key',
         label: '百度 OCR API Key',
         type: 'password',
-        placeholder: '输入百度 OCR API Key',
+        placeholder: '輸入百度 OCR API Key',
         sensitiveField: true,
         lengthKey: 'baidu_ocr_api_key_length',
-        description: '用于可编辑 PPTX 导出时的文字识别功能，留空则保持当前设置不变',
+        description: '用於可編輯 PPTX 匯出時的文字識別功能，留空則保持目前設定不變',
       },
     ],
   },
 ];
 
-// Settings 组件 - 纯嵌入模式（可复用）
+// Settings 元件 - 純嵌入模式（可複用）
 export const Settings: React.FC = () => {
   const { show, ToastContainer } = useToast();
   const { confirm, ConfirmDialog } = useConfirm();
@@ -295,9 +295,9 @@ export const Settings: React.FC = () => {
         });
       }
     } catch (error: any) {
-      console.error('加载设置失败:', error);
+      console.error('載入設定失敗:', error);
       show({
-        message: '加载设置失败: ' + (error?.message || '未知错误'),
+        message: '載入設定失敗: ' + (error?.message || '未知錯誤'),
         type: 'error'
       });
     } finally {
@@ -328,14 +328,14 @@ export const Settings: React.FC = () => {
       const response = await api.updateSettings(payload);
       if (response.data) {
         setSettings(response.data);
-        show({ message: '设置保存成功', type: 'success' });
-        show({ message: '建议在本页底部进行服务测试，验证关键配置', type: 'info' });
+        show({ message: '設定儲存成功', type: 'success' });
+        show({ message: '建議在本頁底部進行服務測試，驗證關鍵設定', type: 'info' });
         setFormData(prev => ({ ...prev, api_key: '', mineru_token: '', baidu_ocr_api_key: '' }));
       }
     } catch (error: any) {
-      console.error('保存设置失败:', error);
+      console.error('儲存設定失敗:', error);
       show({
-        message: '保存设置失败: ' + (error?.response?.data?.error?.message || error?.message || '未知错误'),
+        message: '儲存設定失敗: ' + (error?.response?.data?.error?.message || error?.message || '未知錯誤'),
         type: 'error'
       });
     } finally {
@@ -345,7 +345,7 @@ export const Settings: React.FC = () => {
 
   const handleReset = () => {
     confirm(
-      '将把大模型、图像生成和并发等所有配置恢复为环境默认值，已保存的自定义设置将丢失，确定继续吗？',
+      '將把大型模型、圖像生成和並行等所有設定恢復為環境預設值，已儲存的自訂設定將遺失，確定繼續嗎？',
       async () => {
         setIsSaving(true);
         try {
@@ -372,12 +372,12 @@ export const Settings: React.FC = () => {
               image_thinking_budget: response.data.image_thinking_budget || 1024,
               baidu_ocr_api_key: '',
             });
-            show({ message: '设置已重置', type: 'success' });
+            show({ message: '設定已重設', type: 'success' });
           }
         } catch (error: any) {
-          console.error('重置设置失败:', error);
+          console.error('重設設定失敗:', error);
           show({
-            message: '重置设置失败: ' + (error?.message || '未知错误'),
+            message: '重設設定失敗: ' + (error?.message || '未知錯誤'),
             type: 'error'
           });
         } finally {
@@ -385,8 +385,8 @@ export const Settings: React.FC = () => {
         }
       },
       {
-        title: '确认重置为默认配置',
-        confirmText: '确定重置',
+        title: '確認重設為預設設定',
+        confirmText: '確定重設',
         cancelText: '取消',
         variant: 'warning',
       }
@@ -408,10 +408,10 @@ export const Settings: React.FC = () => {
   ) => {
     updateServiceTest(key, { status: 'loading' });
     try {
-      // 准备测试时要使用的设置（包括未保存的修改）
+      // 準備測試時要使用的設定（包括未儲存的修改）
       const testSettings: any = {};
 
-      // 只传递用户已填写的非空值
+      // 只傳遞使用者已填寫的非空值
       if (formData.api_key) testSettings.api_key = formData.api_key;
       if (formData.api_base_url) testSettings.api_base_url = formData.api_base_url;
       if (formData.ai_provider_format) testSettings.ai_provider_format = formData.ai_provider_format;
@@ -423,7 +423,7 @@ export const Settings: React.FC = () => {
       if (formData.baidu_ocr_api_key) testSettings.baidu_ocr_api_key = formData.baidu_ocr_api_key;
       if (formData.image_resolution) testSettings.image_resolution = formData.image_resolution;
 
-      // 推理模式设置
+      // 推理模式設定
       if (formData.enable_text_reasoning !== undefined) {
         testSettings.enable_text_reasoning = formData.enable_text_reasoning;
       }
@@ -437,11 +437,11 @@ export const Settings: React.FC = () => {
         testSettings.image_thinking_budget = formData.image_thinking_budget;
       }
 
-      // 启动异步测试，获取任务ID
+      // 啟動非同步測試，取得任務ID
       const response = await action(testSettings);
       const taskId = response.data.task_id;
 
-      // 开始轮询任务状态
+      // 開始輪詢任務狀態
       const pollInterval = setInterval(async () => {
         try {
           const statusResponse = await api.getTestStatus(taskId);
@@ -450,37 +450,37 @@ export const Settings: React.FC = () => {
           if (taskStatus === 'COMPLETED') {
             clearInterval(pollInterval);
             const detail = formatDetail(statusResponse.data.result || {});
-            const message = statusResponse.data.message || '测试成功';
+            const message = statusResponse.data.message || '測試成功';
             updateServiceTest(key, { status: 'success', message, detail });
             show({ message, type: 'success' });
           } else if (taskStatus === 'FAILED') {
             clearInterval(pollInterval);
-            const errorMessage = statusResponse.data.error || '测试失败';
+            const errorMessage = statusResponse.data.error || '測試失敗';
             updateServiceTest(key, { status: 'error', message: errorMessage });
-            show({ message: '测试失败: ' + errorMessage, type: 'error' });
+            show({ message: '測試失敗: ' + errorMessage, type: 'error' });
           }
-          // 如果是 PENDING 或 PROCESSING，继续轮询
+          // 如果是 PENDING 或 PROCESSING，繼續輪詢
         } catch (pollError: any) {
           clearInterval(pollInterval);
-          const errorMessage = pollError?.response?.data?.error?.message || pollError?.message || '轮询失败';
+          const errorMessage = pollError?.response?.data?.error?.message || pollError?.message || '輪詢失敗';
           updateServiceTest(key, { status: 'error', message: errorMessage });
-          show({ message: '测试失败: ' + errorMessage, type: 'error' });
+          show({ message: '測試失敗: ' + errorMessage, type: 'error' });
         }
-      }, 2000); // 每2秒轮询一次
+      }, 2000); // 每2秒輪詢一次
 
-      // 设置最大轮询时间（2分钟）
+      // 設定最大輪詢時間（2分鐘）
       setTimeout(() => {
         clearInterval(pollInterval);
         if (serviceTestStates[key]?.status === 'loading') {
-          updateServiceTest(key, { status: 'error', message: '测试超时' });
-          show({ message: '测试超时，请重试', type: 'error' });
+          updateServiceTest(key, { status: 'error', message: '測試逾時' });
+          show({ message: '測試逾時，請重試', type: 'error' });
         }
       }, 120000);
 
     } catch (error: any) {
-      const errorMessage = error?.response?.data?.error?.message || error?.message || '未知错误';
+      const errorMessage = error?.response?.data?.error?.message || error?.message || '未知錯誤';
       updateServiceTest(key, { status: 'error', message: errorMessage });
-      show({ message: '测试失败: ' + errorMessage, type: 'error' });
+      show({ message: '測試失敗: ' + errorMessage, type: 'error' });
     }
   };
 
@@ -542,7 +542,7 @@ export const Settings: React.FC = () => {
       );
     }
 
-    // switch 类型 - 开关切换
+    // switch 類型 - 開關切換
     if (field.type === 'switch') {
       const isEnabled = Boolean(value);
       return (
@@ -572,12 +572,12 @@ export const Settings: React.FC = () => {
       );
     }
 
-    // text, password, number 类型
+    // text, password, number 類型
     const placeholder = field.sensitiveField && settings && field.lengthKey
-      ? `已设置（长度: ${settings[field.lengthKey]}）`
+      ? `已設定（長度: ${settings[field.lengthKey]}）`
       : field.placeholder || '';
 
-    // 判断是否禁用（思考负载字段在对应开关关闭时禁用）
+    // 判斷是否停用（思考負載欄位在對應開關關閉時停用）
     let isDisabled = false;
     if (field.key === 'text_thinking_budget') {
       isDisabled = !formData.enable_text_reasoning;
@@ -612,7 +612,7 @@ export const Settings: React.FC = () => {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center py-12">
-        <Loading message="加载设置中..." />
+        <Loading message="載入設定中..." />
       </div>
     );
   }
@@ -622,7 +622,7 @@ export const Settings: React.FC = () => {
       <ToastContainer />
       {ConfirmDialog}
       <div className="space-y-8">
-        {/* 配置区块（配置驱动） */}
+        {/* 設定區塊（設定驅動） */}
         <div className="space-y-8">
           {settingsSections.map((section) => (
             <div key={section.title}>
@@ -632,10 +632,10 @@ export const Settings: React.FC = () => {
               </h2>
               <div className="space-y-4">
                 {section.fields.map((field) => renderField(field))}
-                {section.title === '大模型 API 配置' && (
+                {section.title === '大型模型 API 設定' && (
                   <div className="mt-2 p-3 bg-blue-50 border border-blue-200 rounded-lg">
                     <p className="text-sm text-gray-700">
-                      API 密匙获取可前往{' '}
+                      API 金鑰取得可前往{' '}
                       <a
                         href="https://aihubmix.com/?aff=17EC"
                         target="_blank"
@@ -644,7 +644,7 @@ export const Settings: React.FC = () => {
                       >
                         AIHubmix
                       </a>
-                      , 减小迁移成本
+                      ，減少遷移成本
                     </p>
                   </div>
                 )}
@@ -653,63 +653,63 @@ export const Settings: React.FC = () => {
           ))}
         </div>
 
-        {/* 服务测试区 */}
+        {/* 服務測試區 */}
         <div className="space-y-4">
           <h2 className="text-xl font-semibold text-gray-900 mb-2 flex items-center">
             <FileText size={20} />
-            <span className="ml-2">服务测试</span>
+            <span className="ml-2">服務測試</span>
           </h2>
           <p className="text-sm text-gray-500">
-            提前验证关键服务配置是否可用，避免使用期间异常。
+            提前驗證關鍵服務設定是否可用，避免使用期間異常。
           </p>
           <div className="p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
             <p className="text-sm text-gray-700">
-              💡 提示：图像生成和 MinerU 测试可能需要 30-60 秒，请耐心等待。
+              💡 提示：圖像生成和 MinerU 測試可能需要 30-60 秒，請耐心等待。
             </p>
           </div>
           <div className="space-y-4">
             {[
               {
                 key: 'baidu-ocr',
-                title: 'Baidu OCR 服务',
-                description: '识别测试图片文字，验证 BAIDU_OCR_API_KEY 配置',
+                title: 'Baidu OCR 服務',
+                description: '識別測試圖片文字，驗證 BAIDU_OCR_API_KEY 設定',
                 action: api.testBaiduOcr,
-                formatDetail: (data: any) => (data?.recognized_text ? `识别结果：${data.recognized_text}` : ''),
+                formatDetail: (data: any) => (data?.recognized_text ? `識別結果：${data.recognized_text}` : ''),
               },
               {
                 key: 'text-model',
-                title: '文本生成模型',
-                description: '发送短提示词，验证文本模型与 API 配置',
+                title: '文字生成模型',
+                description: '發送短提示詞，驗證文字模型與 API 設定',
                 action: api.testTextModel,
-                formatDetail: (data: any) => (data?.reply ? `模型回复：${data.reply}` : ''),
+                formatDetail: (data: any) => (data?.reply ? `模型回覆：${data.reply}` : ''),
               },
               {
                 key: 'caption-model',
-                title: '图片识别模型',
-                description: '生成测试图片并请求模型输出描述',
+                title: '圖片識別模型',
+                description: '生成測試圖片並請求模型輸出描述',
                 action: api.testCaptionModel,
-                formatDetail: (data: any) => (data?.caption ? `识别描述：${data.caption}` : ''),
+                formatDetail: (data: any) => (data?.caption ? `識別描述：${data.caption}` : ''),
               },
               {
                 key: 'baidu-inpaint',
-                title: 'Baidu 图像修复',
-                description: '使用测试图片执行修复，验证百度 inpaint 服务',
+                title: 'Baidu 圖像修復',
+                description: '使用測試圖片執行修復，驗證百度 inpaint 服務',
                 action: api.testBaiduInpaint,
-                formatDetail: (data: any) => (data?.image_size ? `输出尺寸：${data.image_size[0]}x${data.image_size[1]}` : ''),
+                formatDetail: (data: any) => (data?.image_size ? `輸出尺寸：${data.image_size[0]}x${data.image_size[1]}` : ''),
               },
               {
                 key: 'image-model',
-                title: '图像生成模型',
-                description: '基于测试图片生成演示文稿背景图（1K, 可能需要 20-40 秒）',
+                title: '圖像生成模型',
+                description: '基於測試圖片生成簡報背景圖（1K，可能需要 20-40 秒）',
                 action: api.testImageModel,
-                formatDetail: (data: any) => (data?.image_size ? `输出尺寸：${data.image_size[0]}x${data.image_size[1]}` : ''),
+                formatDetail: (data: any) => (data?.image_size ? `輸出尺寸：${data.image_size[0]}x${data.image_size[1]}` : ''),
               },
               {
                 key: 'mineru-pdf',
                 title: 'MinerU 解析 PDF',
-                description: '上传测试 PDF 并等待解析结果返回（可能需要 30-60 秒）',
+                description: '上傳測試 PDF 並等待解析結果回傳（可能需要 30-60 秒）',
                 action: api.testMineruPdf,
-                formatDetail: (data: any) => (data?.content_preview ? `解析预览：${data.content_preview}` : data?.message || ''),
+                formatDetail: (data: any) => (data?.content_preview ? `解析預覽：${data.content_preview}` : data?.message || ''),
               },
             ].map((item) => {
               const testState = serviceTestStates[item.key] || { status: 'idle' as TestStatus };
@@ -730,7 +730,7 @@ export const Settings: React.FC = () => {
                       loading={isLoadingTest}
                       onClick={() => handleServiceTest(item.key, item.action, item.formatDetail)}
                     >
-                      {isLoadingTest ? '测试中...' : '开始测试'}
+                      {isLoadingTest ? '測試中...' : '開始測試'}
                     </Button>
                   </div>
                   {testState.status === 'success' && (
@@ -749,7 +749,7 @@ export const Settings: React.FC = () => {
           </div>
         </div>
 
-        {/* 操作按钮 */}
+        {/* 操作按鈕 */}
         <div className="flex items-center justify-between pt-4 border-t border-gray-200">
           <Button
             variant="secondary"
@@ -757,7 +757,7 @@ export const Settings: React.FC = () => {
             onClick={handleReset}
             disabled={isSaving}
           >
-            重置为默认配置
+            重設為預設設定
           </Button>
           <Button
             variant="primary"
@@ -765,7 +765,7 @@ export const Settings: React.FC = () => {
             onClick={handleSave}
             loading={isSaving}
           >
-            {isSaving ? '保存中...' : '保存设置'}
+            {isSaving ? '儲存中...' : '儲存設定'}
           </Button>
         </div>
       </div>
@@ -773,16 +773,16 @@ export const Settings: React.FC = () => {
   );
 };
 
-// SettingsPage 组件 - 完整页面包装
+// SettingsPage 元件 - 完整頁面包裝
 export const SettingsPage: React.FC = () => {
   const navigate = useNavigate();
-  
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-banana-50 to-yellow-50">
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         <Card className="p-6 md:p-8">
           <div className="space-y-8">
-            {/* 顶部标题 */}
+            {/* 頂部標題 */}
             <div className="flex items-center justify-between pb-6 border-b border-gray-200">
               <div className="flex items-center">
                 <Button
@@ -791,12 +791,12 @@ export const SettingsPage: React.FC = () => {
                   onClick={() => navigate('/')}
                   className="mr-4"
                 >
-                  返回首页
+                  返回首頁
                 </Button>
                 <div>
-                  <h1 className="text-2xl font-bold text-gray-900">系统设置</h1>
+                  <h1 className="text-2xl font-bold text-gray-900">系統設定</h1>
                   <p className="text-sm text-gray-500 mt-1">
-                    配置应用的各项参数
+                    設定應用程式的各項參數
                   </p>
                 </div>
               </div>

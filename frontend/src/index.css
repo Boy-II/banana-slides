@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 :root {
-  /* 主色 - 黄色系 */
-  --banana-yellow: #FFD700;
-  --banana-yellow-light: #FFE44D;
-  --banana-yellow-dark: #FFC700;
-  --banana-yellow-pale: #FFF9E6;
+  /* 主色 - 红色系 */
+  --banana-yellow: #EF4444;
+  --banana-yellow-light: #FECACA;
+  --banana-yellow-dark: #DC2626;
+  --banana-yellow-pale: #FEE2E2;
 
   /* 中性色 - 黑白灰 */
   --black: #1A1A1A;
