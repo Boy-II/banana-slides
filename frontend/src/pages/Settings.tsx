@@ -653,7 +653,7 @@ export const Settings: React.FC = () => {
               {
                 key: 'baidu-ocr',
                 title: 'OCR 服務（實驗中）',
-                description: '識別測試圖片文字，驗證 BAIDU_OCR_API_KEY 設定',
+                description: '識別測試圖片文字，驗證 OCR_API_KEY 設定',
                 action: api.testBaiduOcr,
                 formatDetail: (data: any) => (data?.recognized_text ? `識別結果：${data.recognized_text}` : ''),
               },
