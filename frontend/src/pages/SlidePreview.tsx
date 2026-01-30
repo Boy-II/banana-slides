@@ -1257,7 +1257,7 @@ export const SlidePreview: React.FC = () => {
         </aside>
 
         {/* 右側：大圖預覽 */}
-        <main className="flex-1 flex flex-col bg-gradient-to-br from-banana-50 via-white to-gray-50 min-w-0 overflow-hidden">
+        <main className="flex-1 flex flex-col bg-[#e2dccf] min-w-0 overflow-hidden">
           {currentProject.pages.length === 0 ? (
             <div className="flex-1 flex items-center justify-center overflow-y-auto">
               <div className="text-center">

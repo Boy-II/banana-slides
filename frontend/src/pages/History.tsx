@@ -252,7 +252,7 @@ export const History: React.FC = () => {
   }, [handleSaveEdit, handleCancelEdit]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-banana-50 via-white to-gray-50">
+    <div className="min-h-screen bg-[#e2dccf]">
       {/* 導覽列 */}
       <nav className="h-14 md:h-16 bg-white shadow-sm border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-3 md:px-4 h-full flex items-center justify-between">

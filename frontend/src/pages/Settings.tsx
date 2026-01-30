@@ -243,7 +243,7 @@ const settingsSections: SectionConfig[] = [
         key: 'baidu_ocr_api_key',
         label: 'OCR API Key',
         type: 'password',
-        placeholder: '輸入百度 OCR API Key',
+        placeholder: '輸入 OCR API Key',
         sensitiveField: true,
         lengthKey: 'baidu_ocr_api_key_length',
         description: '用於可編輯 PPTX 匯出時的文字識別功能，留空則保持目前設定不變',
@@ -630,20 +630,7 @@ export const Settings: React.FC = () => {
               <div className="space-y-4">
                 {section.fields.map((field) => renderField(field))}
                 {section.title === '大型模型 API 設定' && (
-                  <div className="mt-2 p-3 bg-blue-50 border border-blue-200 rounded-lg">
-                    <p className="text-sm text-gray-700">
-                      API 金鑰取得可前往{' '}
-                      <a
-                        href="https://aihubmix.com/?aff=17EC"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-blue-600 hover:text-blue-800 underline font-medium"
-                      >
-                        AIHubmix
-                      </a>
-                      ，減少遷移成本
-                    </p>
-                  </div>
+                  
                 )}
               </div>
             </div>
@@ -668,7 +655,7 @@ export const Settings: React.FC = () => {
             {[
               {
                 key: 'baidu-ocr',
-                title: 'Baidu OCR 服務',
+                title: 'OCR 服務（實驗中）',
                 description: '識別測試圖片文字，驗證 BAIDU_OCR_API_KEY 設定',
                 action: api.testBaiduOcr,
                 formatDetail: (data: any) => (data?.recognized_text ? `識別結果：${data.recognized_text}` : ''),
@@ -775,7 +762,7 @@ export const SettingsPage: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-banana-50 to-yellow-50">
+    <div className="min-h-screen bg-[#e2dccf]">
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         <Card className="p-6 md:p-8">
           <div className="space-y-8">
