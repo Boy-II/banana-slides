@@ -629,9 +629,6 @@ export const Settings: React.FC = () => {
               </h2>
               <div className="space-y-4">
                 {section.fields.map((field) => renderField(field))}
-                {section.title === '大型模型 API 設定' && (
-                  
-                )}
               </div>
             </div>
           ))}
