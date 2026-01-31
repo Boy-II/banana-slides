@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useCallback } from 'react';
 import { Image as ImageIcon, RefreshCw, X, FileText } from 'lucide-react';
 import { listMaterials, deleteMaterial, listProjectReferenceFiles, type Material, type ReferenceFile } from '@/api/endpoints';
@@ -37,7 +38,7 @@ export const ProjectResourcesList: React.FC<ProjectResourcesListProps> = ({
   // 加载素材列表
   const loadMaterials = useCallback(async () => {
     if (!projectId || !showImages) return;
-    
+
     setIsLoadingMaterials(true);
     try {
       const response = await listMaterials(projectId);
@@ -55,7 +56,7 @@ export const ProjectResourcesList: React.FC<ProjectResourcesListProps> = ({
   // 加载文件列表
   const loadFiles = useCallback(async () => {
     if (!projectId || !showFiles) return;
-    
+
     setIsLoadingFiles(true);
     try {
       const response = await listProjectReferenceFiles(projectId);
@@ -80,9 +81,9 @@ export const ProjectResourcesList: React.FC<ProjectResourcesListProps> = ({
     materialId: string
   ) => {
     e.stopPropagation();
-    
+
     setDeletingMaterialIds(prev => new Set(prev).add(materialId));
-    
+
     try {
       await deleteMaterial(materialId);
       setMaterials(prev => prev.filter(m => m.id !== materialId));

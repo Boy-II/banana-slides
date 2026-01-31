@@ -1,3 +1,4 @@
+
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import * as api from '@/api/endpoints';
@@ -38,7 +39,7 @@ export interface ExportTask {
 
 interface ExportTasksState {
   tasks: ExportTask[];
-  
+
   // Actions
   addTask: (task: Omit<ExportTask, 'createdAt'>) => void;
   updateTask: (id: string, updates: Partial<ExportTask>) => void;
@@ -57,7 +58,7 @@ export const useExportTasksStore = create<ExportTasksState>()(
         set((state) => {
           // Check if task with this id already exists
           const existingIndex = state.tasks.findIndex(t => t.id === task.id);
-          
+
           if (existingIndex >= 0) {
             // Update existing task
             const updatedTasks = [...state.tasks];
@@ -130,9 +131,9 @@ export const useExportTasksStore = create<ExportTasksState>()(
                   console.warn('[ExportTasksStore] Failed to parse progress:', e);
                 }
               }
-              
+
               updates.progress = progressData;
-              
+
               // Extract download URL if available
               if (progressData.download_url) {
                 updates.downloadUrl = progressData.download_url;
@@ -173,7 +174,7 @@ export const useExportTasksStore = create<ExportTasksState>()(
         const activeTasks = state.tasks.filter(
           task => task.status === 'PENDING' || task.status === 'PROCESSING' || task.status === 'RUNNING'
         );
-        
+
         if (activeTasks.length > 0) {
           console.log(`[ExportTasksStore] 恢复 ${activeTasks.length} 个正在进行的任务`);
           activeTasks.forEach(task => {

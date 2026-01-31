@@ -90,7 +90,7 @@ export const HelpModal: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
             className="h-16 w-16 object-contain"
           />
         </div>
-        <h3 className="text-2xl font-bold text-gray-800">歡迎使用BW！</h3>
+        <h3 className="text-2xl font-bold text-gray-800">歡迎使用BW！PPT生成系統</h3>
         <p className="text-sm text-gray-600">在開始前，讓我們先完成基礎設定</p>
       </div>
 
@@ -168,11 +168,10 @@ export const HelpModal: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
       {features.map((feature, idx) => (
         <div
           key={idx}
-          className={`border rounded-xl transition-all cursor-pointer ${
-            expandedFeature === idx
+          className={`border rounded-xl transition-all cursor-pointer ${expandedFeature === idx
               ? 'border-banana-300 bg-banana-50/50 shadow-sm'
               : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
-          }`}
+            }`}
           onClick={() => setExpandedFeature(expandedFeature === idx ? null : idx)}
         >
           {/* 标题行 */}
@@ -186,9 +185,8 @@ export const HelpModal: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
             </div>
             <ChevronRight
               size={18}
-              className={`text-gray-400 transition-transform flex-shrink-0 ${
-                expandedFeature === idx ? 'rotate-90' : ''
-              }`}
+              className={`text-gray-400 transition-transform flex-shrink-0 ${expandedFeature === idx ? 'rotate-90' : ''
+                }`}
             />
           </div>
 
@@ -233,11 +231,10 @@ export const HelpModal: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
             <button
               key={idx}
               onClick={() => setCurrentPage(idx)}
-              className={`h-2 rounded-full transition-all ${
-                idx === currentPage
+              className={`h-2 rounded-full transition-all ${idx === currentPage
                   ? 'bg-banana-500 w-8'
                   : 'bg-gray-300 hover:bg-gray-400 w-2'
-              }`}
+                }`}
               title={idx === 0 ? '引導頁' : '功能介紹'}
             />
           ))}

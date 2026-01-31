@@ -29,7 +29,7 @@ export const OutlineCard: React.FC<OutlineCardProps> = ({
   const [editTitle, setEditTitle] = useState(page.outline_content.title);
   const [editPoints, setEditPoints] = useState(page.outline_content.points.join('\n'));
 
-  // 当 page prop 变化时，同步更新本地编辑状态（如果不在编辑模式）
+  // 當 page prop 變化時，同步更新本地編輯狀態（如果不在編輯模式）
   useEffect(() => {
     if (!isEditing) {
       setEditTitle(page.outline_content.title);
@@ -55,28 +55,27 @@ export const OutlineCard: React.FC<OutlineCardProps> = ({
 
   return (
     <Card
-      className={`p-4 relative ${
-        isSelected ? 'border-2 border-banana-500 shadow-yellow' : ''
-      }`}
+      className={`p-4 relative ${isSelected ? 'border-2 border-banana-500 shadow-yellow' : ''
+        }`}
       onClick={!isEditing ? onClick : undefined}
     >
       <ShimmerOverlay show={isAiRefining} />
-      
+
       <div className="flex items-start gap-3 relative z-10">
         {/* 拖拽手柄 */}
-        <div 
+        <div
           {...dragHandleProps}
           className="flex-shrink-0 cursor-move text-gray-400 hover:text-gray-600 pt-1"
         >
           <GripVertical size={20} />
         </div>
 
-        {/* 内容区 */}
+        {/* 內容區 */}
         <div className="flex-1 min-w-0">
-          {/* 页码和章节 */}
+          {/* 頁碼和章節 */}
           <div className="flex items-center gap-2 mb-2">
             <span className="text-sm font-semibold text-gray-900">
-              第 {index + 1} 页
+              第 {index + 1} 頁
             </span>
             {page.part && (
               <span className="text-xs px-2 py-0.5 bg-blue-100 text-blue-700 rounded">
@@ -86,21 +85,21 @@ export const OutlineCard: React.FC<OutlineCardProps> = ({
           </div>
 
           {isEditing ? (
-            /* 编辑模式 */
+            /* 編輯模式 */
             <div className="space-y-3" onClick={(e) => e.stopPropagation()}>
               <input
                 type="text"
                 value={editTitle}
                 onChange={(e) => setEditTitle(e.target.value)}
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-banana-500"
-                placeholder="标题"
+                placeholder="標題"
               />
               <textarea
                 value={editPoints}
                 onChange={(e) => setEditPoints(e.target.value)}
                 rows={5}
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-banana-500 resize-none"
-                placeholder="要点（每行一个）"
+                placeholder="要點（每行一個）"
               />
               <div className="flex justify-end gap-2">
                 <button
@@ -132,7 +131,7 @@ export const OutlineCard: React.FC<OutlineCardProps> = ({
           )}
         </div>
 
-        {/* 操作按钮 */}
+        {/* 操作按鈕 */}
         {!isEditing && (
           <div className="flex-shrink-0 flex gap-2">
             <button
@@ -148,9 +147,9 @@ export const OutlineCard: React.FC<OutlineCardProps> = ({
               onClick={(e) => {
                 e.stopPropagation();
                 confirm(
-                  '确定要删除这一页吗？',
+                  '確定要刪除這一頁嗎？',
                   onDelete,
-                  { title: '确认删除', variant: 'danger' }
+                  { title: '確認刪除', variant: 'danger' }
                 );
               }}
               className="p-1.5 text-gray-500 hover:text-red-600 hover:bg-red-50 rounded transition-colors"

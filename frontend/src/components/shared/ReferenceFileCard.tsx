@@ -6,15 +6,15 @@ export interface ReferenceFileCardProps {
   file: ReferenceFile;
   onDelete: (fileId: string) => void;
   onStatusChange?: (file: ReferenceFile) => void;
-  deleteMode?: 'delete' | 'remove'; // 'delete': 彻底删除文件, 'remove': 只从项目中移除
-  onClick?: () => void; // 点击卡片的事件
+  deleteMode?: 'delete' | 'remove'; // 'delete': 徹底刪除文件, 'remove': 只從項目中移除
+  onClick?: () => void; // 點擊卡片的事件
 }
 
 export const ReferenceFileCard: React.FC<ReferenceFileCardProps> = ({
   file: initialFile,
   onDelete,
   onStatusChange,
-  deleteMode = 'delete', // 默认是彻底删除（文件选择器中使用）
+  deleteMode = 'delete', // 默認是徹底刪除（文件選擇器中使用）
   onClick,
 }) => {
   const [file, setFile] = useState<ReferenceFile>(initialFile);
@@ -30,12 +30,12 @@ export const ReferenceFileCard: React.FC<ReferenceFileCardProps> = ({
           if (response.data?.file) {
             const updatedFile = response.data.file;
             setFile(updatedFile);
-            
+
             // Notify parent of status change
             if (onStatusChange) {
               onStatusChange(updatedFile);
             }
-            
+
             // Stop polling if completed or failed
             if (updatedFile.parse_status === 'completed' || updatedFile.parse_status === 'failed') {
               clearInterval(intervalId);
@@ -43,12 +43,12 @@ export const ReferenceFileCard: React.FC<ReferenceFileCardProps> = ({
           }
         } catch (error) {
           console.error('Failed to poll file status:', error);
-          // 轮询出错时不要崩溃，继续轮询
+          // 輪詢出錯時不要崩潰，繼續輪詢
         }
       }, 2000); // Poll every 2 seconds
 
       return () => {
-        // 清理定时器，防止内存泄漏
+        // 清理定時器，防止內存洩漏
         clearInterval(intervalId);
       };
     }
@@ -56,14 +56,14 @@ export const ReferenceFileCard: React.FC<ReferenceFileCardProps> = ({
 
   const handleDelete = async () => {
     if (isDeleting) return;
-    
+
     setIsDeleting(true);
     try {
       if (deleteMode === 'remove') {
-        // 从项目中移除，不删除文件本身
+        // 從項目中移除，不刪除文件本身
         await dissociateFileFromProject(file.id);
       } else {
-        // 彻底删除文件
+        // 徹底刪除文件
         await deleteReferenceFile(file.id);
       }
       onDelete(file.id);
@@ -75,14 +75,14 @@ export const ReferenceFileCard: React.FC<ReferenceFileCardProps> = ({
 
   const handleReparse = async () => {
     if (isReparsing || file.parse_status === 'parsing' || file.parse_status === 'pending') return;
-    
+
     setIsReparsing(true);
     try {
       const response = await triggerFileParse(file.id);
       if (response.data?.file) {
         const updatedFile = response.data.file;
         setFile(updatedFile);
-        
+
         // Notify parent of status change
         if (onStatusChange) {
           onStatusChange(updatedFile);
@@ -124,7 +124,7 @@ export const ReferenceFileCard: React.FC<ReferenceFileCardProps> = ({
       case 'completed':
         return '解析完成';
       case 'failed':
-        return '解析失败';
+        return '解析失敗';
       default:
         return '';
     }
@@ -145,10 +145,9 @@ export const ReferenceFileCard: React.FC<ReferenceFileCardProps> = ({
   };
 
   return (
-    <div 
-      className={`flex items-center gap-3 p-3 bg-white border border-gray-200 rounded-lg hover:shadow-sm transition-shadow ${
-        onClick ? 'cursor-pointer' : ''
-      }`}
+    <div
+      className={`flex items-center gap-3 p-3 bg-white border border-gray-200 rounded-lg hover:shadow-sm transition-shadow ${onClick ? 'cursor-pointer' : ''
+        }`}
       onClick={onClick}
     >
       {/* File Icon */}
@@ -168,7 +167,7 @@ export const ReferenceFileCard: React.FC<ReferenceFileCardProps> = ({
             {formatFileSize(file.file_size)}
           </span>
         </div>
-        
+
         {/* Status */}
         <div className="flex items-center gap-1.5 mt-1">
           {getStatusIcon()}
@@ -178,13 +177,13 @@ export const ReferenceFileCard: React.FC<ReferenceFileCardProps> = ({
         </div>
 
         {/* Image Caption Failure Warning */}
-        {file.parse_status === 'completed' && 
-         typeof file.image_caption_failed_count === 'number' && 
-         file.image_caption_failed_count > 0 && (
-          <p className="text-xs text-orange-500 mt-1">
-            ⚠️ {file.image_caption_failed_count} 张图片未能生成描述
-          </p>
-        )}
+        {file.parse_status === 'completed' &&
+          typeof file.image_caption_failed_count === 'number' &&
+          file.image_caption_failed_count > 0 && (
+            <p className="text-xs text-orange-500 mt-1">
+              ⚠️ {file.image_caption_failed_count} 張圖片未能生成描述
+            </p>
+          )}
 
         {/* Error Message */}
         {file.parse_status === 'failed' && file.error_message && (
@@ -196,7 +195,7 @@ export const ReferenceFileCard: React.FC<ReferenceFileCardProps> = ({
 
       {/* Action Buttons */}
       <div className="flex items-center gap-1">
-        {/* Reparse Button - 只在解析完成时显示 */}
+        {/* Reparse Button - 只在解析完成時顯示 */}
         {file.parse_status === 'completed' && (
           <button
             onClick={(e) => {
@@ -214,7 +213,7 @@ export const ReferenceFileCard: React.FC<ReferenceFileCardProps> = ({
             )}
           </button>
         )}
-        
+
         {/* Delete Button */}
         <button
           onClick={(e) => {
@@ -223,7 +222,7 @@ export const ReferenceFileCard: React.FC<ReferenceFileCardProps> = ({
           }}
           disabled={isDeleting}
           className="flex-shrink-0 p-1 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded transition-colors disabled:opacity-50"
-          title={deleteMode === 'remove' ? '从项目中移除' : '删除文件'}
+          title={deleteMode === 'remove' ? '從項目中移除' : '刪除文件'}
         >
           {isDeleting ? (
             <Loader2 className="w-4 h-4 animate-spin" />

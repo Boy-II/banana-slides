@@ -382,11 +382,10 @@ export const MaterialCenterModal: React.FC<MaterialCenterModalProps> = ({
                 <div
                   key={key}
                   onClick={() => handleSelectMaterial(material)}
-                  className={`aspect-video rounded-lg border-2 cursor-pointer transition-all relative group ${
-                    isSelected
+                  className={`aspect-video rounded-lg border-2 cursor-pointer transition-all relative group ${isSelected
                       ? 'border-banana-500 ring-2 ring-banana-200'
                       : 'border-gray-200 hover:border-banana-300'
-                  }`}
+                    }`}
                 >
                   <img
                     src={getImageUrl(material.url)}

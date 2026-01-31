@@ -364,6 +364,7 @@ export const OutlineEditor: React.FC = () => {
                         onClick={() => setSelectedPageId(page.id || null)}
                         isSelected={selectedPageId === page.id}
                         isAiRefining={isAiRefining}
+
                       />
                     ))}
                   </div>

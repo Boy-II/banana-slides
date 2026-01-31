@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef } from 'react';
 import { ArrowLeft } from 'lucide-react';
 import { cn } from '@/utils';
@@ -28,14 +29,14 @@ export const Loading: React.FC<LoadingProps> = ({
   backgroundButtonLabel = '在后台执行',
 }) => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  
+
   // 自动滚动到最新消息
   useEffect(() => {
     if (messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   }, [progress?.messages]);
-  
+
   // 计算进度百分比
   const getPercent = () => {
     if (!progress) return 0;
@@ -43,10 +44,10 @@ export const Loading: React.FC<LoadingProps> = ({
     if (progress.total > 0) return Math.round((progress.completed / progress.total) * 100);
     return 0;
   };
-  
+
   const percent = getPercent();
   const hasMessages = progress?.messages && progress.messages.length > 0;
-  
+
   const content = (
     <div className="flex flex-col items-center justify-center max-w-md w-full px-4">
       {/* 加载图标 */}
@@ -54,10 +55,10 @@ export const Loading: React.FC<LoadingProps> = ({
         <div className="absolute inset-0 border-4 border-banana-100 rounded-full" />
         <div className="absolute inset-0 border-4 border-banana-500 rounded-full border-t-transparent animate-spin" />
       </div>
-      
+
       {/* 消息 */}
       <p className="text-lg text-gray-700 mb-4 text-center">{message}</p>
-      
+
       {/* 进度条 */}
       {progress && (
         <div className="w-full">
@@ -72,18 +73,18 @@ export const Loading: React.FC<LoadingProps> = ({
           </div>
         </div>
       )}
-      
+
       {/* 滚动消息日志 */}
       {hasMessages && (
         <div className="w-full mt-4">
           <div className="bg-banana-50 border border-banana-200 rounded-lg p-3 h-32 overflow-y-auto text-xs">
             {progress.messages!.map((msg, index) => (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className={cn(
                   "py-0.5",
-                  index === progress.messages!.length - 1 
-                    ? "text-banana-700 font-medium" 
+                  index === progress.messages!.length - 1
+                    ? "text-banana-700 font-medium"
                     : "text-gray-500"
                 )}
               >

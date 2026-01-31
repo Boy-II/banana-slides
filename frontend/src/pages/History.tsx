@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Home, Trash2 } from 'lucide-react';
@@ -12,7 +13,7 @@ import type { Project } from '@/types';
 export const History: React.FC = () => {
   const navigate = useNavigate();
   const { syncProject, setCurrentProject } = useProjectStore();
-  
+
   const [projects, setProjects] = useState<Project[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -354,11 +355,11 @@ export const History: React.FC = () => {
                 </label>
               </div>
             )}
-            
+
             {projects.map((project) => {
               const projectId = project.id || project.project_id;
               if (!projectId) return null;
-              
+
               return (
                 <ProjectCard
                   key={projectId}
