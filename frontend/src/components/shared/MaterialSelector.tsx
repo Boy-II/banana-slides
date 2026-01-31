@@ -227,7 +227,7 @@ export const MaterialSelector: React.FC<MaterialSelectorProps> = ({
   };
 
   const renderProjectLabel = (p: Project) => {
-    const text = p.idea_prompt || p.outline_text || `項目 ${p.project_id.slice(0, 8)}`;
+    const text = p.idea_prompt || p.outline_text || `專案 ${p.project_id.slice(0, 8)}`;
     return text.length > 20 ? `${text.slice(0, 20)}…` : text;
   };
 
@@ -265,10 +265,10 @@ export const MaterialSelector: React.FC<MaterialSelectorProps> = ({
               >
                 {/* 固定顯示的前三個選項 */}
                 <option value="all">所有素材</option>
-                <option value="none">未關聯項目</option>
+                <option value="none">未關聯專案</option>
                 {projectId && (
                   <option value={projectId}>
-                    當前項目{projects.find(p => p.project_id === projectId) ? `: ${renderProjectLabel(projects.find(p => p.project_id === projectId)!)}` : ''}
+                    當前專案{projects.find(p => p.project_id === projectId) ? `: ${renderProjectLabel(projects.find(p => p.project_id === projectId)!)}` : ''}
                   </option>
                 )}
 
@@ -285,7 +285,7 @@ export const MaterialSelector: React.FC<MaterialSelectorProps> = ({
                 ) : (
                   // 未展開時顯示"查看更多項目"選項
                   projects.length > (projectId ? 1 : 0) && (
-                    <option value="show_more">+ 查看更多項目...</option>
+                    <option value="show_more">+ 查看更多專案...</option>
                   )
                 )}
               </select>
@@ -359,8 +359,8 @@ export const MaterialSelector: React.FC<MaterialSelectorProps> = ({
                     key={key}
                     onClick={() => handleSelectMaterial(material)}
                     className={`aspect-video rounded-lg border-2 cursor-pointer transition-all relative group ${isSelected
-                        ? 'border-banana-500 ring-2 ring-banana-200'
-                        : 'border-gray-200 hover:border-banana-300'
+                      ? 'border-banana-500 ring-2 ring-banana-200'
+                      : 'border-gray-200 hover:border-banana-300'
                       }`}
                   >
                     <img

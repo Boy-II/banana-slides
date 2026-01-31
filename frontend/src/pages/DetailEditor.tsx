@@ -126,7 +126,7 @@ export const DetailEditor: React.FC = () => {
   }, [currentProject, show]);
 
   if (!currentProject) {
-    return <Loading fullscreen message="加載項目中..." />;
+    return <Loading fullscreen message="加載專案中..." />;
   }
 
   const hasAllDescriptions = currentProject.pages.every(

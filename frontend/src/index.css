@@ -74,19 +74,24 @@ body {
 
 /* 移动端按钮优化 - 仅针对主要交互按钮 */
 @media (max-width: 640px) {
+
   .btn-touch-target,
   button:not(.no-min-touch-target):not([class*="w-"]):not([class*="h-"]),
   a:not(.no-min-touch-target):not([class*="w-"]):not([class*="h-"]) {
-    min-height: 44px; /* iOS推荐的最小触摸目标 */
+    min-height: 44px;
+    /* iOS推荐的最小触摸目标 */
     min-width: 44px;
   }
 }
 
 /* 渐变文本动画 */
 @keyframes gradient {
-  0%, 100% {
+
+  0%,
+  100% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
@@ -96,4 +101,3 @@ body {
 .markdown-content {
   line-height: 1.6;
 }
-

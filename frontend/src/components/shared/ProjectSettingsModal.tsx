@@ -109,18 +109,18 @@ export const ProjectSettingsModal: React.FC<ProjectSettingsModalProps> = ({
               <button
                 onClick={() => setActiveTab('project')}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all ${activeTab === 'project'
-                    ? 'bg-banana-500 text-white shadow-md'
-                    : 'bg-white text-gray-700 hover:bg-gray-100'
+                  ? 'bg-banana-500 text-white shadow-md'
+                  : 'bg-white text-gray-700 hover:bg-gray-100'
                   }`}
               >
                 <FileText size={20} />
-                <span className="font-medium">項目設置</span>
+                <span className="font-medium">專案設置</span>
               </button>
               <button
                 onClick={() => setActiveTab('export')}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all ${activeTab === 'export'
-                    ? 'bg-banana-500 text-white shadow-md'
-                    : 'bg-white text-gray-700 hover:bg-gray-100'
+                  ? 'bg-banana-500 text-white shadow-md'
+                  : 'bg-white text-gray-700 hover:bg-gray-100'
                   }`}
               >
                 <Download size={20} />
@@ -129,8 +129,8 @@ export const ProjectSettingsModal: React.FC<ProjectSettingsModalProps> = ({
               <button
                 onClick={() => setActiveTab('global')}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all ${activeTab === 'global'
-                    ? 'bg-banana-500 text-white shadow-md'
-                    : 'bg-white text-gray-700 hover:bg-gray-100'
+                  ? 'bg-banana-500 text-white shadow-md'
+                  : 'bg-white text-gray-700 hover:bg-gray-100'
                   }`}
               >
                 <SettingsIcon size={20} />
@@ -144,9 +144,9 @@ export const ProjectSettingsModal: React.FC<ProjectSettingsModalProps> = ({
             {activeTab === 'project' ? (
               <div className="max-w-3xl space-y-6">
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">項目級配置</h3>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">專案設定</h3>
                   <p className="text-sm text-gray-600 mb-6">
-                    這些設置僅應用於當前項目，不影響其他項目
+                    這些設置僅應用於當前專案，不影響其他專案
                   </p>
                 </div>
 
@@ -232,8 +232,8 @@ export const ProjectSettingsModal: React.FC<ProjectSettingsModalProps> = ({
                       <label
                         key={option.value}
                         className={`flex items-start gap-3 p-4 rounded-lg border-2 cursor-pointer transition-all ${exportExtractorMethod === option.value
-                            ? 'border-banana-500 bg-banana-50'
-                            : 'border-gray-200 hover:border-gray-300 bg-white'
+                          ? 'border-banana-500 bg-banana-50'
+                          : 'border-gray-200 hover:border-gray-300 bg-white'
                           }`}
                       >
                         <input
@@ -266,8 +266,8 @@ export const ProjectSettingsModal: React.FC<ProjectSettingsModalProps> = ({
                       <label
                         key={option.value}
                         className={`flex items-start gap-3 p-4 rounded-lg border-2 cursor-pointer transition-all ${exportInpaintMethod === option.value
-                            ? 'border-banana-500 bg-banana-50'
-                            : 'border-gray-200 hover:border-gray-300 bg-white'
+                          ? 'border-banana-500 bg-banana-50'
+                          : 'border-gray-200 hover:border-gray-300 bg-white'
                           }`}
                       >
                         <input
@@ -318,9 +318,9 @@ export const ProjectSettingsModal: React.FC<ProjectSettingsModalProps> = ({
             ) : (
               <div className="max-w-4xl">
                 <div className="mb-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">全局設置</h3>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">全局設定</h3>
                   <p className="text-sm text-gray-600">
-                    這些設置應用於所有項目
+                    這些設定應用於所有專案
                   </p>
                 </div>
                 {/* 復用 Settings 組件的內容 */}

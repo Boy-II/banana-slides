@@ -222,7 +222,7 @@ export const ReferenceFileCard: React.FC<ReferenceFileCardProps> = ({
           }}
           disabled={isDeleting}
           className="flex-shrink-0 p-1 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded transition-colors disabled:opacity-50"
-          title={deleteMode === 'remove' ? '從項目中移除' : '刪除文件'}
+          title={deleteMode === 'remove' ? '從專案中移除' : '刪除文件'}
         >
           {isDeleting ? (
             <Loader2 className="w-4 h-4 animate-spin" />

@@ -160,7 +160,7 @@ export const OutlineEditor: React.FC = () => {
   const selectedPage = currentProject?.pages.find((p) => p.id === selectedPageId);
 
   if (!currentProject) {
-    return <Loading fullscreen message="加載項目中..." />;
+    return <Loading fullscreen message="加載專案中..." />;
   }
 
   if (isGlobalLoading) {

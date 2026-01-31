@@ -61,8 +61,8 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   return (
     <Card
       className={`p-3 md:p-6 transition-all ${isSelected
-          ? 'border-2 border-banana-500 bg-banana-50'
-          : 'hover:shadow-lg border border-gray-200'
+        ? 'border-2 border-banana-500 bg-banana-50'
+        : 'hover:shadow-lg border border-gray-200'
         } ${isBatchMode ? 'cursor-default' : 'cursor-pointer'}`}
       onClick={() => onSelect(project)}
     >
@@ -94,8 +94,8 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             ) : (
               <h3
                 className={`text-base md:text-lg font-semibold text-gray-900 truncate flex-1 min-w-0 ${isBatchMode
-                    ? 'cursor-default'
-                    : 'cursor-pointer hover:text-banana-600 transition-colors'
+                  ? 'cursor-default'
+                  : 'cursor-pointer hover:text-banana-600 transition-colors'
                   }`}
                 onClick={(e) => onStartEdit(e, project)}
                 title={isBatchMode ? undefined : "點擊編輯名稱"}
@@ -139,7 +139,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           <button
             onClick={(e) => onDelete(e, project)}
             className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
-            title="刪除項目"
+            title="刪除專案"
           >
             <Trash2 size={16} className="md:w-[18px] md:h-[18px]" />
           </button>

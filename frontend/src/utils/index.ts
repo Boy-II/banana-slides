@@ -107,7 +107,7 @@ export function normalizeErrorMessage(errorMessage: string | null | undefined): 
   const message = errorMessage.toLowerCase();
 
   if (message.includes('no template image found')) {
-    return '當前項目還沒有模板，請先點擊頁面工具欄的"更換模板"按鈕，選擇或上傳一張模板圖片後再生成。';
+    return '當前專案還沒有模板，請先點擊專案工具欄的"更換模板"按鈕，選擇或上傳一張模板圖片後再生成。';
   } else if (message.includes('page must have description content')) {
     return '該頁面還沒有描述內容，請先在"編輯頁面描述"步驟為此頁生成或填寫描述。';
   } else if (message.includes('image already exists')) {

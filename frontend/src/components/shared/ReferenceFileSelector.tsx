@@ -423,7 +423,7 @@ export const ReferenceFileSelector: React.FC<ReferenceFileSelectorProps> = React
               <option value="all">所有附件</option>
               <option value="none">未歸類附件</option>
               {projectId && projectId !== 'global' && projectId !== 'none' && (
-                <option value={projectId}>當前項目附件</option>
+                <option value={projectId}>當前專案附件</option>
               )}
             </select>
 

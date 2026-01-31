@@ -25,8 +25,8 @@ export const getProjectTitle = (project: Project): string => {
     }
   }
 
-  // 默認返回未命名項目
-  return '未命名項目';
+  // 默認返回未命名專案
+  return '未命名專案';
 };
 
 /**
